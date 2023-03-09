@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input</title>
+</head>
+<body>
+    <h1>로그인</h1>
+    <ul>
+        <li>
+            <!-- input 태그 타입
+                1) hidden: 사용자에게 보이지 않지만 값을 서버에 넘길 수 있음
+                2) search: 검색 상자
+                3) tel: 전화번호 입력 필드
+                4) url: url주소 입력 필드
+                5) email: 이메일 주소 입력 필드
+                6) password: 비밀번호 입력 필드
+                7) datetime: 국제 표준시로 설정된 날짜와 시간
+                8) date: 사용자 지역을 기준으로 연, 월, 일
+                9) month: 사용자 지역을 기준으로 연, 월
+                10) week: 사용자 지역을 기준으로 연, 주
+                11) range: 숫자로 된 수치를 조절할 수 있는 슬라이드 막대 생성
+                12) color: 색상표 생성
+                13) checkbox: 주어진 항목에서 여러개 선택 가능
+                14) radio: 주어진 항목에서 한개만 선택 가능
+                15) file: 파일을 첨부할 수 있는 버튼 생성
+                16) image: 버튼 대신 사용할 이미지
+                17) button: 버튼 생성
+
+                label: input 태그의 이름 -->
+            <label for="">아이디</label>
+            <input type="text" id="user-id">
+        </li>
+        <li>
+            <label for="">비밀번호</label>
+            <input type="password" id="pwd">
+        </li>
+        <li>
+            <label for="">이메일</label>
+            <input type="email" id="email">
+        </li>
+        <li>
+            <label for="">전화번호</label>
+            <input type="tel" id="phone">
+        </li>
+    </ul>
+    
+    <h1>학생 수</h1>
+    <ul>
+        <li>
+            <label for="">인원(0~10명)</label>
+            <input type="number" value="1" min="0" max="10" step="1">
+        </li>
+    </ul>
+    
+    <h1>난이도</h1>
+    <ul>
+        <li>
+            <label for="">난이도(하, 중, 상)</label>
+            <input type="range" value="2" min="1" max="10">
+        </li>
+    </ul>
+
+    <br>
+
+    <input type="submit" value="회원가입">
+
+    <button>회원가입</button>
+    <!-- 버튼은 타입을 정해줄 수 있는데 기본값이 submit -->
+
+</body>
+</html>

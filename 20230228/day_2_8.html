@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table</title>
+</head>
+<body>
+    <!-- <table>: 표를 작성하는 가장 부모 태그
+            border-collapse: collapse: 선과 선 사이의 간격을 없애줌
+        <caption>: 표의 이름
+        <col>: column, 열, 세로줄
+        <th>: table head, 테이블 헤더
+            border: 테두리를 바꿔주는 속성 (선의 굵기, 선의 색상)
+        <td>: 표 안의 내용
+            rowspan: 세로줄의 병합
+            colspan: 가로줄의 병합  -->
+
+    <table style="width: 100%; border: 2px solid black; border-collapse: collapse;">
+        <caption>
+            Blah blah
+        </caption>
+        <col style="width: 50px;">
+        <col style="width: 150px;">
+        <col style="width: 100px;">
+        <col style="width: 150px;">
+        <col style="width: 200px;">
+        
+        <tr>
+            <th style="border: 2px solid black;">No.</th>
+            <th style="border: 2px solid black;">Name</th>
+            <th style="border: 2px solid black;">Age</th>
+            <th style="border: 2px solid black;">Gender</th>
+            <th style="border: 2px solid black;">Nation</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black;">1</td>
+            <td style="border: 1px solid black;">구담인</td>
+            <td style="border: 1px solid black;">26</td>
+            <td style="border: 1px solid black;">여</td>
+            <td rowspan = "3" style="border: 1px solid black; background-color: lightyellow">대한민국</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black">2</td>
+            <td style="border: 1px solid black">구담인</td>
+            <td style="border: 1px solid black">26</td>
+            <td style="border: 1px solid black">여</td>
+        <tr>
+            <td style="border: 1px solid black">3</td>
+            <td style="border: 1px solid black">구담인</td>
+            <td style="border: 1px solid black">26</td>
+            <td style="border: 1px solid black">여</td>
+        </tr>
+    </table>
+</body>
+</html>

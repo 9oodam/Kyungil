@@ -1,0 +1,78 @@
+body {
+    margin: 30px;;
+}
+
+img { width: 40px; height: 40px; border-radius: 50px; }
+
+h4 {
+    margin: 0px;
+
+    /* 줄바꿈 속성을 없애고, 한줄로 만들어줌 */
+    white-space: nowrap; 
+
+    /* 너비 밖으로 넘어가면 지워버림 */
+    overflow: hidden;
+    /* 텍스트가 부모 태그의 너비 밖으로 넘어가면 ...으로 표시 */
+    text-overflow: ellipsis;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+iframe { border-radius: 20px; }
+
+.youtuber {
+    color: rgb(117, 117, 117);
+}
+
+
+.content {
+    width: 400px; height: 400;
+    display: inline-block;
+}
+
+.position1 {
+    position: relative;
+    top: 10px;
+    left: 10px;
+
+    width: 360px; height: 150px;
+}
+
+.position2 {
+    position: absolute;
+    top: 0;
+    left: 60px;
+
+    width: 280px; height: 90px;
+}
+
+
+.time {
+    bottom: 10px;
+    right: 10px;
+
+    width: 40px; height: 25px;
+    
+    background-color: black;
+    color: white;
+
+    display: none;
+
+}
+
+/* 가상 선택자 */
+/* hover: 마우스가 태그에 올려졌을 때 적용 */
+.position2:hover .time {
+    display: block;
+}
+
+
+/* before 가상 요소 추가 가능, span의 전에 */
+/* after 가상 요소 추가 가능, span의 후에 */
+.youtuber span::before {
+    content: "•";
+    margin: 0 4px;
+}

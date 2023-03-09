@@ -1,0 +1,22 @@
+.background {
+    width: 500px; height: 500px;
+
+    background-color: skyblue;
+
+    background-image: url("https://blog.kakaocdn.net/dn/zfQQi/btrydI0vGzm/3YY3KrPEwKN558e27H6t0k/img.jpg");
+    
+    /* 배경이미지 크기 지정 */
+    background-size: contain;       /* 다 보일 수 있도록 맞춤 */
+    background-size: cover;         /* 최대크기(비율 맞춤), 이미지가 잘릴 수 있음 */
+    background-size: 300px 200px;   /* 너비 높이 */
+
+    /* 배경이미지 위치 지정 */
+    background-position: 10px 10px; /* x축 y축 */
+    background-position: center;    /* 가운데로 */
+
+    /* 배경이미지 반복 여부 */
+    background-repeat: repeat;      /* 기본 값, 반복O */
+    background-repeat: no-repeat;   /* 반복X */
+    background-repeat: repeat-x;    /* x축으로만 반복 */
+    background-repeat: repeat-y;    /* y축으로만 반복 */
+}

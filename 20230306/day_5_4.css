@@ -1,0 +1,62 @@
+/* >: 바로 한 depth 아래 자식 요소 선택자 */
+.tab-menu > input {
+    display: none;
+}
+
+/* +: 인접한 형제 요소 선택자 */
+.tab-menu > input + label {
+    display: inline-block;
+    padding: 30px;
+    background-color: silver;
+    color: white;
+    font-size: 14px;
+
+    /* 마우스를 올렸을 때 보여줄 커서를 설정 */
+    cursor: pointer;
+}
+
+/* checked input 태그의 인접한 label */
+.tab-menu > input:checked + label {
+    background: yellow;
+    color: black;
+}
+
+.box {
+    width: 500px; height: 500px;
+    background-color: skyblue;
+    margin: 0 auto;     /* 브라우저의 중앙 */
+    margin-top: 10px;
+    display: none;
+}
+
+/* input태그 중 tab01 클래스이고 checked 속성이 있고
+    형제 요소 중 밑에 있는 태그 중 item01 클래스*/
+input[class="tab01"]:checked ~ .item01 {
+    display: block;
+}
+
+input[class="tab02"]:checked ~ .item02 {
+    display: block;
+}
+
+input[class="tab03"]:checked ~ .item03 {
+    display: block;
+}
+
+.search {
+    position: relative;
+}
+
+.search:before {
+    position: absolute;
+    top: 5px; left: 180px;
+    content: "";
+    background-image: url(https://img.megabox.co.kr/static/pc/images/common/btn/btn-search-input.png);
+    width: 15px; height: 15px;
+    display: block;
+    background-repeat: no-repeat;
+}
+
+.search input {
+    padding-right: 28px;
+}

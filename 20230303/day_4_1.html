@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insert</title>
+    <link rel="stylesheet" href="./day_4_1.css">
+</head>
+<body>
+    <div class="background"></div>
+    
+    <video src="./test.mp4" controls autoplay loop muted></video>
+    <!-- video: 영상을 출력
+            src에 주소 or 현재 파일명 입력
+            - controls: 영상에 컨트롤 박스 추가
+            - autoplay: 영상이 로드되면 자동재생
+            - loop: 반복재생
+            - muted: 음소거 (ios는 웹페이지 첫접속시 음소거가 기본)-->
+
+    <audio src="./test2.mp3" controls autoplay loop></audio>
+    <!-- audio: 음성을 출력 -->
+
+    <iframe src="https://blog.naver.com/zephyr122059/223027763058" frameborder="0" width="500" height="500"></iframe>
+    <!-- iframe: 웹페이지 안에 다른 웹페이지를 보여줌
+            src에 페이지의 주소 입력
+            - width, height -->
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/mys4co3D9L4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <!-- Youtube 영상 - 공유하기 - 퍼가기 - iframe링크 -->
+
+    <br><br><br>
+    
+    
+    <form action="">
+        <label for="">아이디</label>
+        <input type="text" name="user_id">
+        <!-- name: 서버에 데이터를 보낼 때 이름을 정해줌 -->
+
+        <br>
+
+        <label for="radio">김밥</label>
+        <input type="radio" name="radio">
+        <label for="radio">초밥</label>
+        <input type="radio" name="radio">
+        <label for="radio">덮밥</label>
+        <input type="radio" name="radio">
+        <label for="radio">라면</label>
+        <input type="radio" name="radio">
+        <!-- radio: 하나만 선택하는 여러 체크박스에서 중복 체크할 때 name 사용 -->
+
+    </form>
+    <!-- form: 서버로 데이터를 보내기 위해 사용
+            node.js에서 서버와 같이 작업할 때 데이터를 보내기 위해 사용 예정
+            action에 보낼 url 명시 -->
+</body>
+</html>

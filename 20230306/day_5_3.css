@@ -1,0 +1,13 @@
+/* 1. 폰트 파일 다운로드 */
+/* 2. @font-face작성
+        font-family: 사용할 폰트의 이름을 정해줌
+        url: 사용할 폰트의 파일 경로  */
+
+@font-face {
+    font-family: 'noto';
+    src: url(../20230306/font/NotoSansKR-Black.otf) format('truetype');
+}
+
+body {
+    font-family: 'noto';
+}

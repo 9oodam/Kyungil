@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu</title>
+
+    <style>
+        body {
+            width: 100%; height: 100vh;
+        }
+        #mainmenu {
+            width: 100%; height: 100%; background-color: aquamarine;
+            display: flex;
+        }
+        .dishes {
+            width: 200px; height: 200px; background-color: ivory;
+            padding: 10px; margin: 10px; 
+            box-sizing: border-box; display: inline-block;
+            text-align: center;
+        }
+        .sidedishes {
+            width: 200px; height: 200px; background-color: ivory;
+            padding: 10px; margin: 10px; border: 5px solid black;
+            box-sizing: border-box; display: inline-block;
+            text-align: center; border-style: dashed;
+        }
+        img {
+            width: 100px; height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainmenu">
+        <div style="width: 80%; background-color: ivory;
+                    margin: 10px; border: 5px solid black;
+                    border-radius: 20px;">
+            <div style="width: 200px; height: 100px; background-color: beige;
+                        border-radius: 20px; text-align: center;">main menu</div>
+
+            <div>
+                <div class="dishes">
+                    <img src="1541280374213.jpg" alt="야채새우볶음밥">
+                    <h3>야채새우볶음밥</h3>
+                    <h4>7.0</h4>
+                </div>
+                <div class="dishes">
+                    <img src="1541280374213.jpg" alt="야채새우볶음밥">
+                    <h3>안심스테이크샐러드</h3>
+                    <h4>12.0</h4>
+                </div>
+                <div class="dishes">
+                    <img src="1541280374213.jpg" alt="야채새우볶음밥">
+                    <h3>연어감자스테이크</h3>
+                    <h4>12.0</h4>
+                </div>
+                <div class="dishes">
+                    <img src="1541280374213.jpg" alt="야채새우볶음밥">
+                    <h3>양갈비립스테이크</h3>
+                    <h4>14.0</h4>
+                </div>
+                <div class="dishes">
+                    <img src="1541280374213.jpg" alt="야채새우볶음밥">
+                    <h3>불고기계란덮밥</h3>
+                    <h4>8.0</h4>
+                </div>
+                <div class="sidedishes">
+                    <h3>Side Menu</h3>
+                    <h4>어쩌구</h4>
+                    <h4>저쩌구</h4>
+                    <h4>얼씨구</h4>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: bottom;">
+            <h1>메<br>뉴<br>판</h1>
+        </div>
+    </div>
+    </body>
+</html>

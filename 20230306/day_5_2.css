@@ -1,0 +1,25 @@
+/* media query: 브라우저 화면 환경에 따라 css를 적용 */
+/* @media only(이곳에서만), screen(화면일 때), and(조건) */
+
+@media only screen and (max-width: 1000px) {
+    /* 화면 너비 1000px 이하까지 스타일 적용 */
+
+    .box {
+        width: 500px;
+        height: 500px;
+        border: 10px solid orange;
+        background-color: skyblue;
+
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    /* 화면 너비 500px 이상부터 스타일 적용 */
+
+    .box {
+        width: 500px;
+        height: 500px;
+        border: 10px solid orange;
+        background-color: navy;
+    }
+}

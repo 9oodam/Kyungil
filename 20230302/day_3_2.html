@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>style2</title>
+
+    <!-- 속성을 작성하여 태그에 한 번에 적용 가능
+        태그 이름이나 고유 이름으로 적용
+
+            id: css 작성에서 앞에 #을 붙여줌
+            class: css 작성에서 앞에 .을 붙여줌
+            모든 태그: css 작성에서 *을 붙여줌
+
+            * 중요도: id > class > 태그 이름 > *
+            * 같은 속성이 2번 작성되면 가장 나중의 것이 적용
+            * 자식 태그에 붙여주고 싶을 때: 부모태그 (띄어쓰기) 자식태그 {}
+            * 자식 클래스에 붙여주고 싶을 때: .부모클래스 (띄어쓰기) .자식클래스 {}
+                    .test .content {}
+
+                    <div class="test">
+                        <div class="content">
+                        </div>
+                    </div>
+            * 두 클래스를 모두 가진 클래스에만 붙여주고 싶을 때: .부모클래스.자식클래스 {}
+                   .test.content {}         
+
+                    <div class="test content">
+                    </div>
+            * 부모 클래스를 가지고 있는 태그 자식 중 자식 클래스를 가지고 있는 가장 첫 번째 자식에:: .부모클래스 > .자식클래스 {}
+                    .test > .content {}
+                    
+                    <div class="test">
+                        <div class="content"></div>
+                        <div class="content"></div>
+                        <div class="content"></div>
+                    </div>
+                 -->
+    <style>
+        #test1 {
+            color: red;
+        }
+        .block7 {
+            color: blue;
+        }
+        .block7 {
+            color: green;
+        }
+        *{
+            color: yellow;
+        }
+        div, h2 {
+            color: violet
+        }
+        div {
+            color: brown;
+        }
+        div p {
+            color: black;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- id: 문서 안에서 한 번만 적용, 중복되면 안됨, 고유의 명을 설정
+            레이아웃 스타일을 지정해주거나 javascript에서 웹 요소를 구분할 때 사용 -->
+    <div id="test1" class="block7">ID</div>
+    
+    <!-- class: 같은 태그라도 다른 스타일을 적용시킬 때 사용, 중복 가능 -->
+    <div class="block7">CLASS</div>
+
+    <div>BLAHBLAH</div>
+    <div>BLAHBLAH</div>
+    <div>BLAHBLAH</div>
+    <div>BLAHBLAH</div>
+    <div>BLAHBLAH</div>
+    <div>
+        <p>
+            BLAHBLAH</div>
+        </p>
+    <h1>BLAHBLAH</h1>
+    <h2>BLAHBLAH</h2>
+</body>
+</html>

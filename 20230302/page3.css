@@ -1,0 +1,21 @@
+table {
+    width: 800px; height: 100px; border: 1px solid darkgrey;
+    border-collapse: collapse; text-align: center;
+}
+
+th {
+    height: 60px; border: 1px solid darkgrey;
+    background-color: lightgrey;
+}
+
+td {
+    height: 60px; border: 1px solid darkgrey;
+}
+
+img {
+    width: 40px; height: 40px;
+}
+
+.notice {
+    text-align: left;
+}

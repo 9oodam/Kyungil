@@ -1,0 +1,29 @@
+.position1 {
+    position: relative; /* 이전 영역의 위치를 기준으로 지정 */
+
+    /* 태그를 해당위치에서 움직여야할 때, 위치를 지정하고 싶을 때 */
+    top: 100px;
+    left: 100px;
+    /* position 속성을 주고 top(or bottom) & left(or right) */
+    
+    width: 500px; height: 2000px;
+    border: 1px solid black;
+}
+
+.position2 {
+    position: absolute; /* relative 속성을 가지고 있는 부모의 좌측 상단을 기준으로 지정 */
+                        /* 부모 class가 relative속성, 자식 class가 absolte의 경우 */
+                        /* 바로 위 부모가 relative속성이 없으면 계속해서 올라가고 아예 없는 경우 body 기준 */
+
+    position: fixed;    /* 우리가 보고 있는 브라우저의 위치로 고정 */
+                        /* 스크롤에도 따라서 움직임 */
+                        /* navigation bar or floating button 만들기에 사용 */
+
+    position: sticky;   /* 지정된 위치 밖으로 나가지 못하게 */
+    
+    top: 100px;
+    right: 100px;
+
+    width: 100px; height: 100px;
+    border: 1px solid black;
+}

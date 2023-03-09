@@ -1,0 +1,511 @@
+.tab-menu {
+    width: 1150px;
+}
+
+.tab-menu > input {
+    display: none;
+}
+
+.tab-menu > input + label {
+    width: 180px; height: 10px;
+    display: inline-block;
+
+    padding: 15px;
+    margin: 0 auto;
+    color: silver;
+    font-size: 14px;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.tab-menu > input:checked + label {
+    color: rgb(80, 51, 150);
+}
+
+.box {
+    position: relative;
+
+    width: 1150px; height: 1500px;
+    border-top: 1px solid rgb(80, 51, 150);
+
+    display: none;
+}
+
+/* ------------------------------------------------------ */
+.search {
+    position: absolute;
+    top: 40px; right: 55px;
+}
+
+.search:before {
+    position: absolute;
+    top: 8px; left: 200px;
+    content: "";
+    background-image: url(https://img.megabox.co.kr/static/pc/images/common/btn/btn-search-input.png);
+    width: 15px; height: 15px;
+    display: block;
+    background-repeat: no-repeat;
+}
+
+.search input {
+    width: 190px;
+    height: 25px;
+    padding-right: 30px;
+    border: 1px solid silver;
+}
+/* ----------------------------------------------------------- */
+
+input[class="boxoffice"]:checked ~ .item01 {
+    display: block;
+}
+
+input[class="scheduled"]:checked ~ .item02 {
+    display: block;
+}
+
+input[class="special"]:checked ~ .item03 {
+    display: block;
+}
+
+input[class="film"]:checked ~ .item04 {
+    display: block;
+}
+
+input[class="classic"]:checked ~ .item05 {
+    display: block;
+}
+
+/* -------------------------------------------------------------- */
+.movies {
+    position: absolute;
+    width: 1100px;
+    margin-top: 80px;
+    margin-left: 20px;
+}
+
+.movie {
+    display: inline-block;
+    margin: 20px; 
+}
+
+.number {
+    position: absolute;
+    top: 5px; left: 10px;
+    font-size: 26px;
+    margin: 0px;
+    color: white;
+    font-style: italic;
+    text-shadow: 2px 2px 2px gray;
+}
+
+/* ------------------------------------------------------------- */
+img {
+    width: 230px; height: 330px;
+}
+
+.info {
+    position: relative;
+    margin-top: 10px;
+    width: 230px;
+}
+
+@font-face {
+    font-family: 'noto';
+    src: url(../20230306/font/NotoSansKR-Black.otf) format('truetype');
+}
+
+.age12 {
+    position: absolute;
+
+    width: 25px; height: 25px;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    background-color: rgb(255, 187, 0);
+    border-radius: 3px;
+    font-weight: 400;
+    font-family: 'noto';
+
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.age15 {
+    position: absolute;
+
+    width: 25px; height: 25px;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+    background-color: rgb(255, 123, 0);
+    border-radius: 3px;
+    font-weight: 400;
+    font-family: 'noto';
+
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.ageall {
+    position: absolute;
+
+    width: 25px; height: 25px;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    background-color: rgb(32, 158, 74);
+    border-radius: 3px;
+    font-weight: 400;
+    font-family: 'noto';
+
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+
+
+.title {
+    position: absolute;
+    left: 30px;
+
+    width: 200px;
+
+    font-weight: 1000;
+
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.date {
+    position: absolute;
+    top: 30px;
+
+    font-size: 13px;
+
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.date span::before {
+    content: "ㅣ";
+    margin: 0 4px;
+}
+
+.btn {
+    position: absolute;
+    top: 60px;
+
+    width: 230px;
+    text-align: center;
+
+    display: flex;
+}
+
+.btn1 {
+    width: 70px; height: 35px;
+    border: 1px solid silver;
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(80, 51, 150);
+    margin: 2px;
+}
+
+.btn1 span::before {
+    content: "♡";
+    margin-right: 4px;
+    color: silver;
+}
+
+.btn2 {
+    width: 70px; height: 35px;
+    border: 1px solid rgb(80, 51, 150);
+    border-radius: 5px;
+    background-color: rgb(80, 51, 150);
+    color: white;
+    margin: 2px;
+}
+
+.btn3 {
+    width: 70px; height: 35px;
+    border: 1px solid rgb(80, 51, 150);
+    border-radius: 5px;
+    background-color: rgb(80, 51, 150);
+    color: white;
+    font-size: 11px;
+    margin: 2px;
+}
+
+/* --------------------------------------------------------------- */
+.poster01 {
+    position: relative;
+}
+
+.black01 {
+    position: absolute;
+    top:193px; left:0;
+    width: 230px; height: 137px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: none;
+}
+
+.poster01:hover .black01 {
+    display: block;
+}
+
+.poster01:hover .story01 {
+    display: block;
+}
+
+.story01 {
+    position: absolute;
+    top:0; left:0;
+    width: 230px; height: 193px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 13px;
+
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    display: none;
+}
+
+
+.poster02 {
+    position: relative;
+}
+
+.black02 {
+    position: absolute;
+    top:193px; left:0;
+    width: 230px; height: 137px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: none;
+}
+
+.poster02:hover .black02 {
+    display: block;
+}
+
+.poster02:hover .story02 {
+    display: block;
+}
+
+.story02 {
+    position: absolute;
+    top:0; left:0;
+    width: 230px; height: 193px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 13px;
+
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    display: none;
+}
+
+
+.poster03 {
+    position: relative;
+}
+
+.black03 {
+    position: absolute;
+    top:193px; left:0;
+    width: 230px; height: 137px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: none;
+}
+
+.poster03:hover .black03 {
+    display: block;
+}
+
+.poster03:hover .story03 {
+    display: block;
+}
+
+.story03 {
+    position: absolute;
+    top:0; left:0;
+    width: 230px; height: 193px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 13px;
+
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    display: none;
+}
+
+
+.poster04 {
+    position: relative;
+}
+
+.black04 {
+    position: absolute;
+    top:193px; left:0;
+    width: 230px; height: 137px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: none;
+}
+
+.poster04:hover .black04 {
+    display: block;
+}
+
+.poster04:hover .story04 {
+    display: block;
+}
+
+.story04 {
+    position: absolute;
+    top:0; left:0;
+    width: 230px; height: 193px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 13px;
+
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    display: none;
+}
+
+
+.poster05 {
+    position: relative;
+}
+
+.black05 {
+    position: absolute;
+    top:193px; left:0;
+    width: 230px; height: 137px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: none;
+}
+
+.poster05:hover .black05 {
+    display: block;
+}
+
+.poster05:hover .story05 {
+    display: block;
+}
+
+.story05 {
+    position: absolute;
+    top:0; left:0;
+    width: 230px; height: 193px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 13px;
+
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    display: none;
+}
+
+
+.poster06 {
+    position: relative;
+}
+
+.black06 {
+    position: absolute;
+    top:193px; left:0;
+    width: 230px; height: 137px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: none;
+}
+
+.poster06:hover .black06 {
+    display: block;
+}
+
+.poster06:hover .story06 {
+    display: block;
+}
+
+.story06 {
+    position: absolute;
+    top:0; left:0;
+    width: 230px; height: 193px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 13px;
+
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    display: none;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./day_5_4.css">
+    <style>
+        /* 바로 인접해야 함 */
+        p+a {   
+            color: red;
+        }
+        /* 인접하지 않아도 아래에만 있으면 됨 */
+        p~a {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <p></p>
+    <div>hmm</div>
+    <a href="">I'm red</a>
+
+    <div class="tab-menu">
+        <!-- 동일한 name을 줘야 하나만 체크됨 -->
+        <!-- checked: 처음부터 기본값으로 체크를 줌 -->
+        <!-- for 속성으로 연결된 label을 클릭하면 id로 연결된 체크박스가 클릭됨 -->
+        <input class="tab01" type="radio" id="tab01" name="tabmenu" checked>
+        <label for="tab01">tab01</label>
+        <input class="tab02" type="radio" id="tab02"  name="tabmenu">
+        <label for="tab02">tab02</label>
+        <input class="tab03" type="radio" id="tab03" name="tabmenu">
+        <label for="tab03">tab03</label>
+
+        <!-- 클래스 2개를 한 번에 가지는 경우 띄어쓰기 -->
+        <div class="box item01">No.1</div>
+        <div class="box item02">No.2</div>
+        <div class="box item03">No.3</div>
+
+        <div class="search">
+            <input type="text">
+        </div>
+    </div>
+</body>
+</html>

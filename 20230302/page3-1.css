@@ -1,0 +1,40 @@
+.subject {
+    width: 892px; display:flex; list-style: none; text-align: center;
+    background-color: lightgrey;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+ul {
+    padding-inline-start: 0px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+li {
+    border: 1px solid darkgrey;
+}
+
+.col1 {
+    width: 80px;
+}
+.col2 {
+    width: 400px; text-align: left;
+}
+.col3 {
+    width: 100px;
+}
+.col4 {
+    width: 200px;
+}
+.col5 {
+    width: 100px;
+}
+
+.subject .col2 {
+    text-align: center;
+}
+
+img {
+    width: 40px; height: 40px;
+}

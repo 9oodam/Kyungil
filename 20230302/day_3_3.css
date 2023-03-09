@@ -1,0 +1,58 @@
+/* style 태그에 작성했던 그대로 */
+
+div {
+    color: red;
+}
+
+/* basic css */
+
+.display {
+    display: block;                 /* 블록 요소,  div태그의 기본 값, 자신의 너비를 전부 차지 */
+    display: inline;                /* span, a 등등 기본 값을 인라인으로 가지고 있음, 자기 자리만 차지 */
+    display: flex;                  /* 자식 태그들을 정렬시킴, 정렬 방식은 여러가지 */
+    display: inherit;               /* 부모의 값을 가져와서 적용, 상속, 사용 잘 안함 */
+    display: initial;               /* 태그가 기본적으로 가지고 있던 속성으로 초기화 */
+    display: none;                  /* 태그를 보이지 않게 화면에서 지움, 선택 안됨 */ 
+}
+
+.wh {
+    width: 100px;                   /* 태그의 너비 */
+    width: max-content;             /* 가지고 있는 자식 태그의 너비만큼만 차지 */
+    width: min-content;             /* 가지고 있는 자식 태그 중 가작 작은 너비만큼 차지 */
+    max-width: 100px;               /* 설정한 너비 이상으로 태그가 커지지 않음 */
+    min-width: 100px;               /* 설정한 너비 이하로 태그가 작아지지 않음 */
+
+    height: 100px;                  /* 태그의 높이 */
+}
+
+.content {
+    overflow: hidden;               /* 자식의 태그가 부모 영역 이상으로 보이지 않음 */
+    overflow: scroll;               /* 보이지 않을 때 스크롤로 이동 가능하게 */
+    overflow-x: scroll;             /* 좌우 스크롤 */
+    overflow-y: hidden;             /* 상하 스크롤 */
+
+    opacity: 1;                     /* 투명도, 0~1(=0~100%) */
+}
+
+.text {
+    font-size: 16px;                /* 글씨크기, 기본값 16px, 환경에 따라 다를 수 있음 */
+    font-weight: 500;               /* 글씨굵기, 기본값 500, 글꼴을 가져오는 경우 변할 수 있음 */
+    color: rgba(0, 0, 0, 1);      /* 글씨색상, 기본값 black, rgb() rgba() 등 */
+                                    /* rgba의 a는 투명도 */
+    text-align: center;             /* end: 오른쪽 끝으로 정렬, start: 왼족 끝으로 정렬 */
+    text-decoration: overline;      /* 텍스트에 줄긋기 */
+    text-decoration: underline;     /* 텍스트에 밑줄긋기 */
+    text-decoration: none;          /* 텍스트 꾸밈 요소 제거 */     
+    
+    letter-spacing: 10px;           /* 글자간격 */
+}
+
+.box {
+    background-color: white;      /* 배경색, rgb(0, 0, 0) */
+    padding: 0;                     /* 태그 내부의 여백 */
+    margin: 0, 0, 0, 0;             /* 태그 외부의 여백 (top, right, bottom left) */
+                                    /* 값을 1개만 썼을 때는 사방면에 적용, 값을 2개만 썼을 때는 상하 좌우 값을 적용 */
+    box-sizing: border-box;         /* 박스 크기의 기준 설정, border-box는 바깥 선까지 박스로 포함한다는 뜻 */
+                                    /* 개발자 모드(F12)에서 숫자 변경 마우스 휠로 가능 (shift + 마우스 휠: 10 단위) */
+                                    /* 원래 있던 속성을 지우고 덧씌울 수 있음 (속성명 = "속성 값") */                                
+}
