@@ -1,5 +1,3 @@
-let _div = null;
-
 for(let i = 0; i < 25; i++) {
     let _div = document.createElement('div');
     _div.classList.add("box");
@@ -13,6 +11,7 @@ _div.addEventListener("click", function() {
         console.log("채우기");
     }
 });
+
 _div.addEventListener("click", function() {
     if(e.target.classList.contains("item") == -1) {
         _target = e.target;

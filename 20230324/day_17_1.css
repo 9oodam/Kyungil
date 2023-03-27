@@ -1,0 +1,40 @@
+.popup-wrap {
+    width: 100%; height: 100%;
+    position: fixed;
+    top: 0; left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+.popup-wrap .popup {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px; height: 600px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.popup-wrap .popup .popup-header .popup-btn {
+    width: 50px; height: 50px;
+    display: block;
+    float: right;
+    position: relative;
+}
+
+.popup-btn::before, .popup-btn::after {
+    content: '';
+    width: 30px; height: 4px;
+    background-color: black;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.popup-btn::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.is-on {
+    display: block;
+}
