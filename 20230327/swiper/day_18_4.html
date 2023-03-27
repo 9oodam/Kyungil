@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day_18_4</title>
+    <style>
+        .swiper-wrap {
+            width: 600px; height: max-content;
+            position: relative;
+            margin: auto;
+        }
+        .swiper {
+            width: 500px; height: 500px;
+            position: relative;
+            margin: auto;
+            border: 1px solid black;
+            overflow: hidden;
+        }
+        .swiper-content {
+            width: max-content; height: 100%;
+            position: absolute;
+            top: 0; left: 0;
+            margin: 0; padding: 0;
+            display: flex;
+            list-style: none;
+
+            transition: 1s;
+        }
+        .swiper-item {
+            width: 500px; height: 100%;
+            border: 1px solid black;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center; align-items: center;
+            pointer-events: none; /* 이벤트 제거 */
+        }
+        .prev, .next {
+            width: 30px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        .prev {
+            left: 5px;
+        }
+        .next {
+            right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- swiper 라이브러리를 사용하면 빠르고 편하지만 수정이 어려움 -->
+    <!-- 본인이 만든 swiper를 가지고 다니는 게 좋음 -->
+    <div class="swiper-wrap">
+        <div class="swiper">
+            <ul class="swiper-content">
+                <li class="swiper-item">5</li>
+                <li class="swiper-item">1</li>
+                <li class="swiper-item">2</li>
+                <li class="swiper-item">3</li>
+                <li class="swiper-item">4</li>
+                <li class="swiper-item">5</li>
+                <li class="swiper-item">1</li>
+            </ul>
+        </div>
+        <span class="prev"><<</span>
+        <span class="next">>></span>
+    </div>
+</body>
+<script src="./day_18_4.js"></script>
+</html>

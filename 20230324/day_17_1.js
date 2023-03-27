@@ -68,7 +68,6 @@ function getCookieTime(cookie){
     let str = cookie.split(';');
     let str2 = str.find(function(i){
         let temp = i.trim();
-        console.log(temp);
         return temp.startsWith('expires=');
     })
     if(str2){

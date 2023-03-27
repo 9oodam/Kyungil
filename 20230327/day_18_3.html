@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day_18_3</title>
+    <style>
+        .lotto-box, .lotto-box2 {
+            display: flex; flex-wrap: wrap;
+            width: 500px; height: 200px;
+            border: 3px solid black;
+            margin-top: 10px;
+        }
+        .lotto-box div, .lotto-box2 div {
+            display: flex;
+            justify-content: center; align-items: center;
+            border: 5px solid black;
+            border-radius: 50%;
+            width: 30px; height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>Lotto</div>
+    <h1>Lotto Box</h1>
+
+    <button class="lotto-btn">로또 추첨</button>
+
+    <div class="lotto-box">
+    </div>
+    <div class="lotto-box2">
+    </div>
+
+</body>
+<script>
+    let lottoBtn = document.querySelector(".lotto-btn");
+    let lottoNum = [];
+    let lottoResult = [];
+
+    // 초기화
+    function init() {
+        for(let i = 1; i <= 45; i++) { // 1~45 반복
+            lottoNum.push(i);
+
+            let _div = document.createElement("div");
+            _div.className = "item" + i; // 클래스 이름 숫자로
+            _div.innerHTML = i; // 내용 숫자 추가
+            
+            document.querySelector(".lotto-box").append(_div);
+        }
+    }
+    init();
+
+    // 로또 추첨 버튼 눌렀을 때 이벤트
+    lottoBtn.addEventListener("click", function(e) {
+        // 숫자 6개를 뽑되 중복 X
+        while(lottoResult.length < 6) {
+            let num = Math.floor(Math.random() * 45 + 1);
+            if(lottoResult.indexOf(num) === -1) { // 배열 안에 값이 없으면 중복이 되지 않는 값
+                lottoResult.push(num); // 중복되지 않는 값 배열에 추가
+                console.log(num);
+                
+                // ex) item1, item24, ...
+                let lottoItem = document.querySelector(".item" + num);
+                document.querySelector(".lotto-box2").append(lottoItem);
+            }
+        }
+        // 구조분해 할당
+        // 배열은 변수의 명이 어떻든 상관없이 값이 순서대로 할당됨
+        let [text1, text2, text3, text4, text5, text6] = lottoResult;
+        console.log("당첨 번호 : ", text1, text2, text3, text4, text5, text6)
+    });
+
+</script>
+</html>
