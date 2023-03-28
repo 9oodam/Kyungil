@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day_19_4</title>
+    <style>
+        .game-wrap {
+            display: flex;
+        }
+        .player-select, .com-select {
+            width: 155px; height: 150px;
+            background-image: url('./img/rsp.png');
+            background-repeat: no-repeat;
+            background-position-x: 15px;
+            background-size: 440px;;
+            border: 1px solid black;
+        }
+        .scissors {
+            background-position-x: 15px;
+        }
+        .rock {
+            background-position-x: -135px;
+        }
+        .paper {
+            background-position-x: -287px;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 가위바위보 게임 -->
+    <div class="game-wrap">
+        <!-- player가 선택한 이미지 -->
+        <div class="player-select"></div>
+        <div class="com-select"></div>
+    </div>
+    <button class="player-btn">가위</button>
+    <button class="player-btn">바위</button>
+    <button class="player-btn">보</button>
+    
+    <h1 class="result">결과</h1>
+    <p class="subResult">내용</p>
+
+</body>
+<script>
+    let gameArr = ["scissors", "rock", "paper"]; // 클래스의 이름으로 사용과 동시에 결과에서도 사용할 문자열 배열
+    let playerBtns = document.querySelectorAll(".player-btn"); // 버튼
+    let playerSelect = document.querySelector(".player-select"); // 선택한 결과를 보여줄 태그
+
+    // 초기화
+    function init() {
+        gameArr.forEach(function(item, index) {
+            playerBtns[index].addEventListener('click', function() {
+                // player 선택한 이미지 보여주는 태그
+                playerSelect.className = "player-select " + item; // player-select 클래스를 유지하면서 새로운 클래스 추가
+                let {value, text} = gameStart(item); // 키를 구조분해 할당으로 받음
+                document.querySelector(".result").innerHTML = value;
+                document.querySelector(".subResult").innerHTML = text;
+            })
+        })
+    }
+    init();
+
+    function gameStart(player) {
+        // 랜덤 값으로 gameArr 배열 안에 있는 가위 바위 보를 가져옴
+        let comSelect = gameArr[Math.floor(Math.random() * gameArr.length)];
+        document.querySelector(".com-select").className ="com-select " + comSelect;
+
+        // 함수 실행하면 객체를 반환값으로
+        if(player == comSelect) {
+            return {value : "무승부", text : "replay"}
+        }else if(player == "rock" && comSelect == "scissors" ||
+                player == "scissors" && comSelect == "paper" ||
+                player == "paper" && comSelect == "rock") {
+            return {value : "승리", text : "win"}
+        }else {
+            return {value : "패배", text : "lose"}
+        }
+    }
+</script>
+</html>

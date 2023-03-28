@@ -1,0 +1,95 @@
+/* top */
+.top {
+    position: relative;
+    height: 60px;
+}
+
+.level-choice { 
+    display: flex;
+    text-align: center;
+    border: 1px solid;
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+}
+
+.level-btn {
+    width: 200px;
+    border: 1px solid;
+    justify-content: center; align-items: center;
+    display: flex;
+    cursor: pointer;
+}
+
+/* middle */
+.middle {
+    position: relative;
+    height: 450px;
+    border: 1px solid;
+}
+
+.select-wrap {
+    display: flex;
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+}
+
+.player-select-wrap, .computer-select-wrap {
+    width: 200px; height: 350px;
+    margin: 10px;
+    justify-content: center; align-items: center;
+    position: relative;
+}
+
+.player-select-wrap p, .computer-select-wrap p {
+    text-align: center;
+    margin-top: 3px;
+}
+
+.player-select, .com-select {
+    width: 155px; height: 150px;
+    background-image: url('../img/rsp.png');
+    background-repeat: no-repeat;
+    background-position-x: 15px;
+    background-size: 440px;
+    justify-content: center; align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.scissors {
+    background-position-x: 15px;
+}
+.rock {
+    background-position-x: -135px;
+}
+.paper {
+    background-position-x: -287px;
+}
+
+.choice-btn {
+    position: absolute;
+    bottom: 15px; left: 50%;
+    transform: translateX(-50%);
+}
+button {
+    width: 100px; height: 30px;
+    margin: 5px;
+    justify-content: center; align-items: center;
+    cursor: pointer;
+}
+
+.money-box {
+    width: 100%;
+    border: 1px solid;
+    position: absolute;
+    bottom: 0;
+    text-align: left;
+}
+
+/* bottom */
+.bottom {
+    position: relative;
+    height: 100px;
+    border: 1px solid;
+}

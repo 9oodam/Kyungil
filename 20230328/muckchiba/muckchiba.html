@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>muchchiba</title>
+    <link rel="stylesheet" href="./muchchiba.css">
+</head>
+<body>
+    <div class="top">
+        <div class="level-choice">
+            <div class="level-btn" id="1" onclick="level(this.id)">
+                쉬움<br>소지금 : 100,000원
+            </div>
+            <div class="level-btn" id="2" onclick="level(this.id)">
+                어려움<br>소지금 : 50,000원
+            </div>
+            <div class="level-btn" id="3" onclick="level(this.id)">
+                매우어려움<br>소지금 : 10,000원
+            </div>
+        </div>
+    </div>
+
+    <div class="middle">
+        <div class="select-wrap">
+            <div class="player-select-wrap">
+                <p>Player Select</p>
+                <div class="player-select"></div>
+                <div class="money-box">
+                    <p>소지금: <span class="restmoneyP"></span></p>
+                    <p>배팅금액: <span class="bettingP"></span></p>
+                    <p>WIN: <span class="win-cntP"></span></p>
+                    <p>LOSE: <span class="lose-cntP"></span></p>
+                </div>
+            </div>
+            <div class="computer-select-wrap">
+                <p>Computer Select</p>
+                <div class="com-select"></div>
+                <div class="money-box">
+                    <p>소지금: <span class="restmoneyC"></span></p>
+                    <p>배팅금액: <span class="bettingC"></span></p>
+                    <p>WIN: <span class="win-cntC"></span></p>
+                    <p>LOSE: <span class="lose-cntC"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="choice-btn">
+            <button class="player-btn">가위(찌)</button>
+            <button class="player-btn">바위(묵)</button>
+            <button class="player-btn">보(빠)</button>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <div class="result">결과: </div>
+        <div class="log">지시: </div>
+    </div>
+
+</body>
+<script src="./muckchiba.js"></script>
+</html>
