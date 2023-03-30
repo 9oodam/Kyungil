@@ -54,8 +54,6 @@ function choiceLevel(choice_num) {
     restmoneyC.innerHTML = computer.restmoney;
     bettingP.innerHTML = player.betting;
     bettingC.innerHTML = computer.betting;
-
-    init();
 }
 
 // 초기화
@@ -79,11 +77,13 @@ function init() {
             winCntC.innerHTML = loseCount;
             loseCntC.innerHTML = winCount;
 
-            gameStart(item, player.restmoney, computer.restmoney); // 키를 구조분해 할당으로 받음
+            let {value, text} = gameStart(item, player.restmoney, computer.restmoney); // 키를 구조분해 할당으로 받음
+            document.querySelector(".result").innerHTML = value;
+            document.querySelector(".log").innerHTML = text;
         })
     })
-    console.log("init 끝");
 }
+init();
 
 function init2() {
     gameArr2.forEach(function(item, index) {
@@ -94,11 +94,10 @@ function init2() {
             gameMCB(item); // 키를 구조분해 할당으로 받음
         })
     })
-    console.log("init2 끝");
 }
+init2();
 
 function gameStart(playerSelect, restmoneyP, restmoneyC) {
-    item = playerSelect;
     player.restmoney = restmoneyP;
     computer.restmoney = restmoneyC;
     console.log(player.restmoney, computer.restmoney);
@@ -109,23 +108,15 @@ function gameStart(playerSelect, restmoneyP, restmoneyC) {
     console.log(`플레이어 선택 : ${playerSelect} | 컴퓨터 선택 : ${comSelect}`);
 
     if(playerSelect == comSelect) {
-        document.querySelector(".result").innerHTML = "무승부";
-        document.querySelector(".log").innerHTML = "다시 시작하세요";
-        console.log("가위바위보 무승부");  
+        return {value : "무승부", text : "다시 시작하세요"};
     }else if(playerSelect == "rock" && comSelect == "scissors" ||
             playerSelect == "scissors" && comSelect == "paper" ||
             playerSelect == "paper" && comSelect == "rock") {
-            document.querySelector(".result").innerHTML = "가위바위보 승리";
-            document.querySelector(".log").innerHTML = "묵찌빠 진행 시작";
             win_lose = "win";
-            console.log("가위바위보 승리");
-            init2();
+            return {value : "가위바위보 승리", text : "묵찌빠 진행 시작"};
     }else {
-        document.querySelector(".result").innerHTML = "가위바위보 패배";
-        document.querySelector(".log").innerHTML = "묵찌빠 진행 시작";
         win_lose = "lose";
-        console.log("가위바위보 패배");
-        init2();
+        return {value : "가위바위보 패배", text : "묵찌빠 진행 시작"};
     }
 }
 
@@ -148,18 +139,14 @@ function mcbing(player, computer) {
     if (player == "muck" && computer == "chi" ||
         player == "chi" && computer == "ba" ||
         player == "ba" && computer == "muck") {
-        document.querySelector(".result").innerHTML = `Player: "${player}" | Computer: "${computer}"`;
-        document.querySelector(".log").innerHTML = "묵찌빠 계속 진행";
         win_lose = "win";
-        console.log("win - 묵찌빠 계속 진행");
-        init2();
-    }
-    else {
         document.querySelector(".result").innerHTML = `Player: "${player}" | Computer: "${computer}"`;
         document.querySelector(".log").innerHTML = "묵찌빠 계속 진행";
+    }else {
         win_lose = "lose";
         console.log("lose - 묵찌빠 계속 진행");
-        init2();
+        document.querySelector(".result").innerHTML = `Player: "${player}" | Computer: "${computer}"`;
+        document.querySelector(".log").innerHTML = "묵찌빠 계속 진행";
     }
 }
 
@@ -168,30 +155,18 @@ function mcbend(whowin) {
         winCount++;
         player.restmoney = player.restmoney + (player.betting * 2);
         computer.restmoney = computer.restmoney - (computer.betting * 2);
-        winCntP.innerHTML = winCount;
-        loseCntC.innerHTML = winCount;
-        restmoneyP.innerHTML = player.restmoney;
-        restmoneyC.innerHTML = computer.restmoney;
 
         document.querySelector(".result").innerHTML = "Player 승리!";
         document.querySelector(".log").innerHTML = "다음판 go! 가위바위보";
         console.log("Player 승리", player.restmoney, computer.restmoney);
-
-        init();
     }else if(whowin == "lose") {
         loseCount++;
         player.restmoney = player.restmoney - (player.betting * 2);
         computer.restmoney = computer.restmoney + (computer.betting * 2);
-        winCntP.innerHTML = loseCount;
-        loseCntC.innerHTML = loseCount;
-        restmoneyP.innerHTML = player.restmoney;
-        restmoneyC.innerHTML = computer.restmoney;
 
         document.querySelector(".result").innerHTML = "Player 패배...";
         document.querySelector(".log").innerHTML = "다시 도전... 가위바위보";
         console.log("Player 패배", player.restmoney, computer.restmoney);
-
-        init();
     }
     
     if(player.restmoney <= 0 || computer.restmoney <= 0) {
@@ -206,8 +181,6 @@ function mcbend(whowin) {
         loseCntP.innerHTML = loseCount;
         winCntC.innerHTML = loseCount;
         loseCntC.innerHTML = winCount;
-
-        console.log(player.restmoney, computer.restmoney);
 
         setTimeout(() => {
             location.reload();
