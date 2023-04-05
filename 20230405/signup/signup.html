@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+</head>
+<body>
+    <label for="">E-mail</label>
+    <input type="text" class="user-id">
+    <label for="">Password</label>
+    <input type="text" class="user-pw">
+    <button class="sign-up">Sign-up</button>
+    <p class="text"></p>
+</body>
+<script>
+    let signBtn = document.querySelector(".sign-up");
+    let text = document.querySelector(".text");
+
+    // 정규식 가져옴
+    // 프론트 단에서 정확한 값인지 먼저 거르는 과정
+    function isEmail(asValue) {
+	    var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	    return regExp.test(asValue); // test 메소드로 정규식 형식이 맞는지 확인 후 true/false 반환
+    }
+    function isPassword(asValue) { // 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합
+	    var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+	    return regExp.test(asValue); // 형식에 맞는 경우 true 리턴
+    }
+
+    signBtn.onclick = function() {
+        console.log("버튼 눌림");
+        let userId = document.querySelector(".user-id").value;
+        let userPw = document.querySelector(".user-pw").value;
+        console.log(userId, userPw);
+
+        console.log("E-mail : ", isEmail(userId));
+        console.log("Password : ", isPassword(userPw));
+
+        if(!isEmail(userId) || !isPassword(userPw)) {
+            text.innerHTML = "다시 확인하세요";
+        }else {
+            text.innerHTML = "회원가입 완료"; // nodejs에서 서버에 값으로 요청 응답
+        }
+    }
+
+</script>
+</html>
