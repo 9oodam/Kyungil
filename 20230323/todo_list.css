@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'hand';
+    src: url(./font/DeliciousHandrawn-Regular.ttf);
+}
+
+body {
+    font-family: 'hand';
+    margin: 0; padding: 0;
+    background-color: antiquewhite;
+    justify-content: center;
+    position: relative;
+}
+
+.container {
+    width: 700px; height: 800px;
+    border: 5px solid black;
+    border-radius: 40px;
+    position: absolute;
+    left: 50%; top: 50px;
+    transform: translate(-50%);
+}
+
+.title {
+    width: 700px; height: 80px;
+    font-size: 40px; font-weight: bold;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px; margin-right: 0;
+}
+
+.inputs-wrap {
+    width: 600px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    font-size: 25px;
+}
+.inputs1 {
+    align-items: center;
+    margin-bottom: 10px;
+}
+.date {
+    width: 180px; height: 25px;
+    margin-right: 40px;
+    border-radius: 10px;
+}
+.content {
+    width: 100%; height: 40px;
+    border-radius: 10px;
+}
+#submitBtn, #deleteBtn {
+    font-family: 'hand';
+    font-size: 20px;
+    margin-top: 15px;
+    width: 80px; height: 40px;
+    text-align: center;
+    border: 1px solid black;
+    background-color: white;
+    cursor: pointer;
+}
+#submitBtn {
+    margin-right: -3px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+#deleteBtn {
+    margin-left: -4px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#_div {
+    width: 700px;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+ul {
+    width: 700px;
+    padding: 0;
+}
+
+.list_name {
+    background-color: black;
+    color: antiquewhite;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 20px;
+}
+
+li {
+    list-style: none;
+    display: flex;
+    font-size: 20px;
+}
+
+li > div {
+    width: 200px; height: 50px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.list_name_date, .list_date {
+    width: 100px;
+}
+.list_name_importance, .list_importance {
+    width: 100px;
+}
+.list_name_list, .list_list {
+    width: 400px;
+}
+.list_name_checked, .list_checked {
+    width: 100px;
+}

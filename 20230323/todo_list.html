@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do List</title>
+    <link rel="stylesheet" href="./todo_list.css">
+  </head>
+  <body>
+    <div class="container">
+        <div class="title">Todo-List</div>
+        <div class="inputs-wrap">
+            <div class="inputs1">
+              <label for="date">Date</label>
+              <input type="date" class="date">
+            
+              <label for="text">Importance :</label>
+              <label for="radio">high</label>
+              <input type="radio" value="high" name="importance">
+              <label for="radio">medium</label>
+              <input type="radio" value="medium" name="importance">
+              <label for="radio">low</label>
+              <input type="radio" value="low" name="importance">
+            </div>
+            <div class=inputs2>
+              <label for="">List</label>
+              <input type="text" class="content">
+            </div>
+            <div class="inputs3">
+              <button id="submitBtn">Submit</button>
+              <button id="deleteBtn">Delete</button>
+            </div>
+        </div>
+    
+        <div id="_div"></div>
+    </div>
+  </body>
+  <script src="./todo_list.js"></script>
+</html>
