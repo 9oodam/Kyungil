@@ -35,5 +35,5 @@ const PORT = 4000;
 server.listen(PORT,()=>{
     // 콜백함수를 등록해서
     // 성공적으로 서버가 열린것인지 확인 가능하다.
-    console.log("서버가 잘 열여있어요~ " + PORT +"에");
+    console.log(PORT + "에 서버가 잘 열려있음");
 });

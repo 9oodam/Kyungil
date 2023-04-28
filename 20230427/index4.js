@@ -37,7 +37,7 @@ console.log(__dirname);
 // 나중에 필요한때가 생기니 잘 알아둘것~
 
 // process 객체
-// console.log(process.env)
+console.log(process.env)
 console.log(process.version) // 노드의 설치 버전
 console.log(process.execPath) // 노드의 경로
 console.log(process.cpuUsage()) // Cpu 사용량
