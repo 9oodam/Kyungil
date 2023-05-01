@@ -1,13 +1,26 @@
 // TCP server, Client 둘 다 만들어보기
 
+// 1) 내장 모듈 net 가져오기, PORT 생성
 const net = require("net");
-const { allowedNodeEnvironmentFlags } = require("process");
-const PORT = 8080;
+const PORT = 6000;
+
+// 2) body 만들기
+const body = Buffer.from("<div><p>Hello nodejs!</p></div>")
 
 // 클라이언트와 서버가 요청 응답으로 주고 받는 메시지는 헤더와 바디로 나눠지고
 // 헤더의 내용은 전달하는 메시지의 정보를 전달하고
 // 바디에는 전달하는 데이터의 내용이 들어있음
 
+// 3) response
+// header, body로 구분해서 읽음
+// response header + body = request message
+const response = `HTTP/1.1 200 OK
+Connection : keep-alive
+Keep-Alive : timeout=4
+Content-type : text/html
+Content-length : ${body.length}
+${body.toString()}
+`
 // HTTP1.1 기본 버전 프로토콜
 // GET / URL / HTTP1.1
 // host : 127.0.0.1:8080
@@ -23,19 +36,6 @@ const PORT = 8080;
 
 // HTTP 프로토콜 버전
 // HTTP 버전은 1.0 1.1. 2.0이 있는데 우리는 1.1 배울 예정
-
-const body = Buffer.from("<div><p>Hello nodejs!</p></div>")
-
-// header, body로 구분해서 읽음
-// response header + body = request message
-const response = `HTTP/1.1 200 OK
-Connection : keep-alive
-Keep-Alive : timeout=4
-Content-type : text/html
-Content-length : ${body.length}
-
-${body.toString()}
-`
 
 // 상태 코드
 // 요청에 대한 응답의 결과를 나타낸 숫자 코드
@@ -64,7 +64,6 @@ const server = net.createServer((client) => {
         // write 메소드로 클라이언트에 응답 보냄
         client.write(response);
     })
-
     // 클라이언트와 연결이 종료되면 실행되는 이벤트
     client.on('close', () => {
         console.log("server off :(");

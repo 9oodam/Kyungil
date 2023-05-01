@@ -2,7 +2,7 @@
 const net = require("net");
 
 // 포트의 내용을 설정해 줄 객체 담기
-const config = {port : 8080}
+const config = {port : 6000}
 
 // connect 메소드로 TCP 소켓을 만들고 지정할 포트로 연결 시도
 const socket = net.connect(config)
