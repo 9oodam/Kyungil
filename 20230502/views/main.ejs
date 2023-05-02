@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+</head>
+<body>
+    <h2>main page</h2>
+    <table style="width: 100%;">
+        <a href="/add">추가 페이지</a>
+        <tr>
+            <th>삭제</th>
+            <th>수정</th>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>전화번호</th>
+            <th>시리즈</th>
+        </tr>
+
+        <!-- ejs 의 스크립트 구문 -->
+        <% data.forEach(function(el, index){ %>
+            <tr>
+                <td>삭제</td>
+                <td>수정</td>
+                <td><%= el.id %></td> 
+                <td><%= el.name %></td>
+                <td><%= el.number %></td>
+                <td><%= el.series %></td>
+            </tr>
+        <% }); %>
+    </table>
+</body>
+<script>
+    /*
+    아래처럼 적어서 위에 복붙하면 편함
+
+    let data = [];
+    data.forEach(function(el, index) {
+
+    });
+    */
+</script>
+</html>
