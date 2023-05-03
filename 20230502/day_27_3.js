@@ -96,9 +96,9 @@ app.post("/add", (req, res) => {
     console.log(data);
 
     // 요청한 데이터의 내용을 데이터베이스에 추가
-    const sql = "INSERT INTO products (name,tel,series)VALUES(?,?,?)";
+    const sql = "INSERT INTO products (name,number,series)VALUES(?,?,?)";
     // query 메소드 두 번째 매개변수로 value를 순서대로 전달 (배열 형태)
-    _mysql.query(sql, [data.name,data.tel,data.series], () => {
+    _mysql.query(sql, [data.name,data.number,data.series], () => {
         res.redirect("/"); // 추가 끝나면 redirect() 로 url 이동
     });
 })
