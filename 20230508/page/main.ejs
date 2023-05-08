@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <h2>main page</h2>
+    <table>
+        <a href="/posts/insert">move to insert page</a>
+        <tr>
+            <th>id</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+        <% data.forEach((el, index) => { %>
+            <tr>
+                <td><%= el.id %></td>
+                <td><a href="/posts/details/<%= el.id %>"><%= el.title %></a></td>
+                <td><%= el.content %></td>
+                <td><a href="/posts/delete/<%= el.id %>">Delete</a></td>
+                <td><a href="/posts/edit/<%= el.id %>">Update</a></td>
+            </tr>
+        <% }); %>
+    </table>
+</body>
+</html>
