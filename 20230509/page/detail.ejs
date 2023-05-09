@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detail</title>
+</head>
+<body>
+    <div class="top">
+        <h2>No. <%= data.id %></h2>
+    </div>
+    <div class="middle">
+        <label for="">TITLE</label>
+        <input type="text" value="<%= data.title %>" disabled>
+        <label for="">DETAILS</label>
+        <input type="text" value="<%= data.details %>" disabled>
+        
+        <!-- 좋아요 누르는 곳 -->
+        <form action="" method="post">
+            <label for="">LIKE</label>
+            <input type="text" value="<%= data.like %>" disabled>
+            <button>like</button>
+        </form>
+    </div>
+    <div class="comment_wrap">
+        <!-- 작성된 댓글 보는 곳 -->
+        <h2>Comment</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>CONTENT</th>
+                <th>NAME</th>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>content</td>
+                <td>name</td>
+            </tr>
+        </table>
+    </div>
+    <div class="bottom">
+        <!-- 댓글 작성하는 곳 -->
+        <form action="" method="post">
+            <label for="">CONTENT</label>
+            <input type="text">
+        </form>
+    </div>
+</body>
+</html>

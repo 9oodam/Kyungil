@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+</head>
+<body>
+    <div class="top">
+        <h2>Board</h2>
+    </div>
+    <div class="middle">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>TITLE</th>
+                <th>DELETE</th>
+                <th>UPDATE</th>
+            </tr>
+            <% data.forEach((el, index) => { %>
+                <tr>
+                    <td><%= el.id %></td>
+                    <td><a href="/posts/detail/<%= el.id %>"><%= el.title %></a></td>
+                    <td><a href="/posts/delete/<%= el.id %>">Delete</a></td>
+                    <td><a href="/posts/edit/<%= el.id %>">Update</a></td>
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+    <div class="bottom">
+        <div class="write_btn"><a href="/posts/insert">Write</a></div>
+    </div>
+</body>
+</html>
