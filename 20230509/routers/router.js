@@ -30,7 +30,7 @@ router.post('/signup', async (req, res) => {
         res.redirect('/posts/login');
     } catch (error) {
         console.log("error(router) : 회원가입 실패");
-        res.redirect('/posts/signup');
+        res.render('signupErr');
     }
 });
 
@@ -44,9 +44,10 @@ router.get('/login', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
+    console.log("로그인 인풋(router) : ", req.body);
     try {
-        const data = await Login(req, res);
-        res.render('/posts', {data});
+        await Login(req, res);
+        res.render('main');
     } catch (error) {
         console.log("error(router) : 로그인 실패");
         alert('로그인 실패');
@@ -73,17 +74,27 @@ router.get('/detail/:id', async (req, res) => {
     }
 });
 
+// 좋아요
+
+
+
+// 댓글
+
+
+
 // insert page (게시글 추가 페이지)
 router.get('/insert', (req, res) => {
     res.render('insert');
 });
 
 router.post('/insert', async (req, res) => {
+    console.log(req);
     try {
         await Insert(req, res);
         res.redirect('/posts/list'); // 추가 후 게시판 페이지로
     } catch (error) {
         console.log("error(router) : 글 추가 실패");
+        console.log(error);
     }
 });
 

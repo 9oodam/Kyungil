@@ -13,8 +13,13 @@ app.set("view engine", "ejs");
 // 정적 파일 이용을 위한 미들웨어 추가
 app.use("/css", express.static(path.join(__dirname, "public")));
 
+// 미들웨어 추가
+app.use(express.urlencoded({extended : false}));
+
 // routers 폴더의 모듈을 불러와 경로 지정
 app.use("/posts", router);
+
+
 
 // 서버 대기 상태
 app.listen(9006, () => {

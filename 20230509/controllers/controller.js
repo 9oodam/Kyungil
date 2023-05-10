@@ -69,6 +69,16 @@ exports.Delete = async function(req, res) {
     }
 }
 
+exports.Thumbs = async function(req, res) {
+    const {id} = req.params;
+    const {thumbs} = req.body;
+    try {
+        await posts.Thumbs(id, thumbs);
+    } catch (error) {
+        console.log("error(controller) : 좋아요 증가 실패");
+    }
+}
+
 exports.InsertComment = async function(req, res) {
     const {content} = req.body;
     try {

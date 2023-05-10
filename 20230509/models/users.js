@@ -14,7 +14,7 @@ const users = {
     login : async function(user_id, user_pw) {
         try {
             const [result] = await mysql.query("SELECT * FROM users WHERE user_id = ? AND user_pw = ?", [user_id, user_pw]);
-            console.log(`로그인 성공 | ${result}`);
+            console.log(`로그인 성공 | ${user_id}`);
             return result;
         } catch (error) {
             console.log("error(model) : 로그인 실패");

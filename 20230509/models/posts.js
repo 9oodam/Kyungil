@@ -7,7 +7,7 @@ const posts = {
             console.log(result);
         } catch (error) {
             console.log("error(model) :테이블 없음");
-            await mysql.query("CREATE TABLE posts(id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(30), details VARCHAR(200), name VARCHAR(10), like INT)");
+            await mysql.query("CREATE TABLE posts(id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(30), details VARCHAR(200), name VARCHAR(10), thumbs INT)");
         }
     },
 
@@ -31,6 +31,7 @@ const posts = {
     },
 
     insert : async function(title, details) {
+        console.log(title, details);
         try {
             await mysql.query("INSERT INTO posts (title, details) VALUES (?, ?)", [title, details]);
             console.log("글 추가 성공");
@@ -57,15 +58,14 @@ const posts = {
         }
     },
 
-    like : async function(id, like) {
+    thumbs : async function(id, thumbs) {
         try {
-            await mysql.query("UPDATE posts SET like = ? WHERE id = ?");
+            await mysql.query("UPDATE posts SET thumbs = thumbs + 1 WHERE id = ?", [thumbs, id]);
             console.log("좋아요 증가");
         } catch (error) {
             console.log("error(model) : 좋아요 증가 실패");
         }
     }
 }
-
 
 module.exports = posts;
