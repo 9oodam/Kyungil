@@ -2,11 +2,12 @@ const users = require("../models/users");
 const posts = require("../models/posts");
 const comments = require("../models/comments");
 
+// users
 exports.Signup = async function(req, res) {
-    console.log(req.body);
     const {user_id, user_pw} = req.body;
     try {
-        await users.signup(user_id, user_pw);
+        const data = await users.signup(user_id, user_pw);
+        return data;
     } catch (error) {
         console.log("error(controller) : 회원가입 실패");
     }
@@ -22,6 +23,8 @@ exports.Login = async function(req, res) {
     }
 }
 
+
+// posts
 exports.ViewPostAll = async function(req, res) {
     try {
         const data = await posts.viewPostAll();
@@ -69,21 +72,47 @@ exports.Delete = async function(req, res) {
     }
 }
 
-exports.Thumbs = async function(req, res) {
+exports.ThumbsUp = async function(req, res) {
     const {id} = req.params;
-    const {thumbs} = req.body;
     try {
-        await posts.Thumbs(id, thumbs);
+        await posts.thumbsUp(id);
+        return id;
     } catch (error) {
         console.log("error(controller) : 좋아요 증가 실패");
     }
 }
 
-exports.InsertComment = async function(req, res) {
-    const {content} = req.body;
+
+// comments
+exports.ViewComment = async function(req, res) {
+    const {id} = req.params;
     try {
-        await posts.insert(content);
+        const data2 = await comments.viewComment(id);
+        console.log(data2);
+        return data2;
+    } catch (error) {
+        console.log("error(controller) : 댓글 조회 실패");
+    }
+}
+
+exports.InsertComment = async function(req, res) {
+    const {id} = req.params;
+    const {content} = req.body;
+    console.log(id, content);
+    try {
+        await comments.insertComment(id, content);
+        return id;
     } catch (error) {
         console.log("error(controller) : 댓글 추가 실패");
+    }
+}
+
+exports.DeleteComment = async function(req, res) {
+    const {id2} = req.params;
+    try {
+        const postsID = await comments.deleteComment(id2);
+        return postsID;
+    } catch (error) {
+        console.log("error(controller) : 댓글 삭제 실패");
     }
 }

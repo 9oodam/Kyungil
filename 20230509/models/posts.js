@@ -23,7 +23,7 @@ const posts = {
     selectPost : async function(id) {
         try {
             const [result] = await mysql.query("SELECT * FROM posts WHERE id = ?", [id]);
-            console.log("선택된 게시글 : ", result[0]);
+            //console.log("선택된 게시글 : ", result[0]);
             return result[0];
         } catch (error) {
             console.log("error(model) : 글 상세 조회 실패");
@@ -33,7 +33,7 @@ const posts = {
     insert : async function(title, details) {
         console.log(title, details);
         try {
-            await mysql.query("INSERT INTO posts (title, details) VALUES (?, ?)", [title, details]);
+            await mysql.query("INSERT INTO posts (title, details, thumbs) VALUES (?, ?, 0)", [title, details]);
             console.log("글 추가 성공");
         } catch (error) {
             console.log("error(model) : 글 추가 실패");
@@ -50,6 +50,7 @@ const posts = {
     },
 
     delete : async function(id) {
+        console.log(id);
         try {
             await mysql.query("DELETE FROM posts WHERE id = ?; SET @CNT = 0; UPDATE posts SET posts.id = @CNT:=@CNT+1; ALTER TABLE posts AUTO_INCREMENT = 0", [id]);
             console.log("글 삭제 성공");
@@ -58,9 +59,9 @@ const posts = {
         }
     },
 
-    thumbs : async function(id, thumbs) {
+    thumbsUp : async function(id) {
         try {
-            await mysql.query("UPDATE posts SET thumbs = thumbs + 1 WHERE id = ?", [thumbs, id]);
+            await mysql.query("UPDATE posts SET thumbs = thumbs + 1 WHERE id = ?", [id]);
             console.log("좋아요 증가");
         } catch (error) {
             console.log("error(model) : 좋아요 증가 실패");

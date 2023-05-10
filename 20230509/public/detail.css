@@ -20,12 +20,10 @@ body {
 .middle {
     width: 100%; height: 80%;
     background-color: rgb(197, 228, 254);
-    border: 1px solid;
     display: flex; flex-direction: row;
 }
 .middle .detail_wrap {
     width: 50%; height: auto;
-    border: 1px solid;
     position: relative;
 }
 .middle .detail_wrap .detail {
@@ -46,13 +44,19 @@ body {
     width: 400px; height: 35px;
     margin: 0 0 30px 0;
 }
-.detail form {
+.detail .form {
     margin-top: 100px;
     display: flex;
 }
-.detail form input {
-    width: 100px;
-    margin: 0 10px 0 0;
+.detail .form input {
+    width: 50px;
+    margin: 0 10px 0 10px;
+    border: none;
+    background-color: aliceblue;
+    font-size: 16px;
+}
+.detail .form a {
+    text-decoration: none;
 }
 .detail button {
     width: 100px; height: 40px;
@@ -69,7 +73,6 @@ body {
 
 .middle .comment_wrap {
     width: 50%; height: auto;
-    border: 1px solid;
     position: relative;
 }
 .comment_list {
@@ -106,6 +109,10 @@ li > div {
 .list_content {
     width: 600px;
 }
+.list_del a {
+    text-decoration: none;
+    color: black;
+}
 
 
 
@@ -118,8 +125,11 @@ li > div {
     padding: 0; margin: 0;
     font-size: 20px;
 }
-.comment_write form {
+.comment_write .form {
     display: flex; flex-direction: column;
+}
+.comment_write .form a {
+    text-decoration: none;
 }
 .comment_write label {
     font-size: 20px;

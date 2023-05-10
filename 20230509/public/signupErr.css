@@ -10,7 +10,8 @@ body {
     border-radius: 5%;
     box-shadow: 10px 10px;
     position: relative;
-    display: flex; justify-content: center; align-items: center;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
     background-color: aliceblue;
     padding: 40px;
     box-sizing: border-box;
@@ -23,4 +24,7 @@ body {
     font-size: 20px;
     text-align: center;
     text-decoration: none;
+}
+.wrap p a {
+    color: red;
 }

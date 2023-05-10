@@ -21,10 +21,10 @@
                 <input type="text" value="<%= data.details %>" disabled>
                 
                 <!-- 좋아요 누르는 곳 -->
-                <form method="post">
-                    <input type="text" value="<%= data.thumbs %>" disabled>
-                    <button>b^~^b</button>
-                </form>
+                <div class="form">
+                    <a href="/posts/thumbs/<%= data.id %>"><button>b^~^b</button></a>
+                    <input type="text" name="thumbs" value="<%= data.thumbs %>">
+                </div>
             </div>
         </div>
 
@@ -39,21 +39,24 @@
                 </li>
                 <% data2.forEach((el, index) => { %>
                     <li>
-                        <div class="list_no"><%= el.id %></div>
-                        <div class="list_content"><%= el.title %></div>
+                        <div class="list_no"><%= index+1 %></div>
+                        <div class="list_content"><%= el.content %></div>
                         <div class="list_name"><%= el.name %></div>
-                        <div class="list_del">( ´-｀)</div>
+                        <div class="list_del"><a href="/posts/deleteComment/<%= el.id2 %>">( ´-｀)</a></div>
                     </li>
                 <% }); %>
             </ul>
 
             <div class="comment_write">
                 <!-- 댓글 작성하는 곳 -->
-                <form action="" method="post">
-                    <label for="">CONTENT</label>
-                    <input type="text">
-                    <button>Submit</button>
-                </form>
+                <div class="form">
+                    <form method="post">
+                        <label for="">COMMENT</label>
+                        <input type="text" name="content">
+                        <button>Submit</button>
+                        <!-- <a href="/posts/comment/<%= data.id %>"><button>Submit</button></a> -->
+                    </form>
+                </div>
             </div>
         </div>
     </div>
