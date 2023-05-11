@@ -5,18 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>edit</title>
+    <link rel="stylesheet" href="/css/insert.css">
 </head>
 <body>
-    <h2>Edit</h2>
-    <form action="" method="post">
-        <label for="">ID</label>
-        <input type="text" name="id" value="<%= data.id %>" disabled>
-        <label for="">TITLE</label>
-        <input type="text" name="title" value="<%= data.title %>">
-        <label for="">DETAILS</label>
-        <input type="text" name="details" value="<%= data.details %>">
-
-        <button>submit</button>
-    </form>
+    <div class="top">
+        <h2>Edit</h2>
+    </div>
+    <div class="middle">
+        <form action="" method="post">
+            <label for="">ID</label>
+            <input type="text" name="id" value="<%= data.id %>" disabled>
+            <label for="">TITLE</label>
+            <input type="text" name="title" value="<%= data.title %>">
+            <label for="">DETAILS</label>
+            <input type="text" name="details" value="<%= data.details %>">
+    
+            <button>submit</button>
+        </form>
+    </div>
 </body>
 </html>
