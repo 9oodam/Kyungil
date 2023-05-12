@@ -1,9 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+const dot = require("dotenv").config();
+
 
 // controller 에서 작성한 내용 가져오기
 const {ViewPostAll, SelectPost, Insert, Update, Delete, InsertComment, Signup, Login, Thumbs, ViewComment, ThumbsUp, DeleteComment} = require("../controllers/controller");
-
 
 // main page (메인 페이지)
 router.get('/', async (req, res) => {
@@ -52,18 +54,54 @@ router.post('/login', async (req, res) => {
     try {
         const data = await Login(req, res);
         console.log("로그인 데이터 : " + data);
+
         if(data === undefined) {
             res.render('loginErr');
         }else {
+            const name1 = req.body.user_id;
+            const name2 = "koo";
+            const key = process.env.KEY; // 토큰을 암호화
+
+            let token = jwt.sign({
+                // payload : 사용자가 받는 정보
+                type : "JWT",
+                name : name1 // 유저 이름
+            }, key, {
+                // header : 설정값
+                expiresIn : "15m",
+                issuer : name2 // 발급자 이름
+            });
+
+            req.session.token = token; // application Cookies를 변경하는 부분
+
+            console.log(token);
             res.render('main');
         }
     } catch (error) {
         console.log("error(router) : 로그인 실패");
+        console.log(error);
     }
 });
 
+function verify(req, res, next) {
+    const token = req.session.token;
+    const key = process.env.KEY;
+    try {
+        jwt.verify(token, key, (err, decoded) => { // key를 기준으로 가져온 token을 분석 == 복호화
+            if(err) {
+                console.log("썩은 토큰", err);
+            }else {
+                console.log("정상 토큰", decoded);
+                next();
+            }
+        });
+    } catch (error) {
+        console.log("error");
+    }
+}
+
 // list page (게시판 페이지)
-router.get('/list', async (req, res) => {
+router.get('/list', verify, async (req, res) => {
     try {
         const data = await ViewPostAll(req, res);
         res.render('list', {data});
