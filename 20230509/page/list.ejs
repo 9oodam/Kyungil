@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="top">
-        <a href="/posts"><p><- Turn to main</p></a>
+        <a href="/"><p><- Turn to main</p></a>
         <h2>Board</h2>
     </div>
     <div class="middle">
@@ -25,13 +25,13 @@
                     <% data.forEach((el, index) => { %>
                         <li>
                             <div class="list_no"><%= el.id %></div>
-                            <div class="list_title"><a href="/posts/detail/<%= el.id %>"><%= el.title %></a></div>
-                            <div class="list_del"><a href="/posts/delete/<%= el.id %>">( ´-｀)</a></div>
-                            <div class="list_up"><a href="/posts/edit/<%= el.id %>">σ(・・ )</a></div>
+                            <div class="list_title"><a href="/detail/<%= el.id %>"><%= el.title %></a></div>
+                            <div class="list_del"><a href="/delete/<%= el.id %>">( ´-｀)</a></div>
+                            <div class="list_up"><a href="/edit/<%= el.id %>">σ(・・ )</a></div>
                         </li>
                     <% }); %>
                 </ul>
-                <div class="write_btn"><a href="/posts/insert">Write</a></div>
+                <div class="write_btn"><a href="/insert">Write</a></div>
             </div>
           </div>
     </div>

@@ -3,7 +3,13 @@ const express = require("express");
 const path = require("path");
 const session = require("express-session"); // 세션 사용을 위한 모듈
 
-const router = require("./routers/router"); // routers 폴더의 모듈
+const dot = require("dotenv");
+const jwt = require("jsonwebtoken");
+
+const mainRouter = require("./routers/mainRouter"); // routers 폴더의 모듈
+const signupRouter = require("./routers/signupRouter");
+const loginRouter = require("./routers/loginRouter");
+const listRouter = require("./routers/listRouter");
 
 
 // 인스턴스 생성
@@ -23,7 +29,7 @@ app.use(express.urlencoded({extended : false}));
 app.use(session({
     // 세션을 발급할 때 사용할 키
     // 나중에는 소스코드에 노출 안되게 바꿀 예정
-    secret : process.env.KEY2,
+    secret : process.env.SESSION_KEY,
     // 세션이 변경되거나 저장하거나 불러올 때 다시 저장할지 여부
     resave : false,
     // 세션에 저장할 때 초기화 여부
@@ -31,8 +37,10 @@ app.use(session({
 }));
 
 // routers 폴더의 모듈을 불러와 경로 지정
-app.use("/posts", router);
-
+app.use("/", mainRouter);
+app.use("/signup", signupRouter);
+app.use("/login", loginRouter);
+app.use("/list", listRouter);
 
 
 // 서버 대기 상태
