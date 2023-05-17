@@ -45,7 +45,7 @@ const users = {
 
     userRefresh : async function(user_id, refresh) {
         try {
-            await mysql.query("")
+            await mysql.query("UPDATE users SET refresh = ? WHERE user_id = ?", [refresh, user_id]);
         } catch (error) {
             console.log("error(model) : refresh token 갱신 실패");
         }

@@ -23,7 +23,7 @@
                 
                 <!-- 좋아요 누르는 곳 -->
                 <div class="form">
-                    <a href="/thumbs/<%= data.id %>"><button>b^~^b</button></a>
+                    <a href="/list/thumbs/<%= data.id %>"><button>b^~^b</button></a>
                     <input type="text" name="thumbs" value="<%= data.thumbs %>">
                 </div>
             </div>
@@ -43,7 +43,7 @@
                         <div class="list_no"><%= index+1 %></div>
                         <div class="list_content"><%= el.content %></div>
                         <div class="list_name"><%= el.name %></div>
-                        <div class="list_del"><a href="/deleteComment/<%= el.id2 %>">( ´-｀)</a></div>
+                        <div class="list_del"><a href="/list/deleteComment/<%= el.id2 %>">( ´-｀)</a></div>
                     </li>
                 <% }); %>
             </ul>

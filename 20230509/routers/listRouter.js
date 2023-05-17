@@ -33,7 +33,7 @@ router.get('/detail/:id', async (req, res) => {
 router.get('/thumbs/:id', async (req, res) => {
     try {
         const data = await ThumbsUp(req, res);
-        res.redirect('/detail/' + data);
+        res.redirect('/list/detail/' + data);
     } catch (error) {
         console.log("error(router) : 좋아요 실패");
     }
@@ -43,7 +43,7 @@ router.get('/thumbs/:id', async (req, res) => {
 router.post('/detail/:id', async (req, res) => {
     try {
         const data = await InsertComment(req, res);
-        res.redirect('/detail/' + data);
+        res.redirect('/list/detail/' + data);
     } catch (error) {
         console.log("error(router) : 댓글 추가 실패");
     }
@@ -53,7 +53,7 @@ router.post('/detail/:id', async (req, res) => {
 router.get('/deleteComment/:id2', async (req, res) => {
     try {
         const {postsID} = await DeleteComment(req, res);
-        res.redirect('/detail/' + postsID);
+        res.redirect('/list/detail/' + postsID);
     } catch (error) {
         console.log("error(router) : 글 삭제 실패");
     }

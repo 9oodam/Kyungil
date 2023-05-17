@@ -25,13 +25,13 @@
                     <% data.forEach((el, index) => { %>
                         <li>
                             <div class="list_no"><%= el.id %></div>
-                            <div class="list_title"><a href="/detail/<%= el.id %>"><%= el.title %></a></div>
-                            <div class="list_del"><a href="/delete/<%= el.id %>">( ´-｀)</a></div>
-                            <div class="list_up"><a href="/edit/<%= el.id %>">σ(・・ )</a></div>
+                            <div class="list_title"><a href="/list/detail/<%= el.id %>"><%= el.title %></a></div>
+                            <div class="list_del"><a href="/list/delete/<%= el.id %>">( ´-｀)</a></div>
+                            <div class="list_up"><a href="/list/edit/<%= el.id %>">σ(・・ )</a></div>
                         </li>
                     <% }); %>
                 </ul>
-                <div class="write_btn"><a href="/insert">Write</a></div>
+                <div class="write_btn"><a href="/list/insert">Write</a></div>
             </div>
           </div>
     </div>

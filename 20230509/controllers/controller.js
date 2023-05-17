@@ -26,11 +26,36 @@ exports.Signup = async function(req, res) {
 
 exports.Login = async function(req, res) {
     const {user_id, user_pw} = req.body;
+
+    console.log(req.body);
     try {
         const data = await users.userSelect(user_id);
+
+        // 1) access token 발급
+        const accessToken = jwt.sign({
+            user_id : data.user_id,
+            mail : "user1@naver.com",
+            nick : "user1"
+        }, process.env.ACCESS_TOKEN_KEY, {
+            expiresIn : "5m"
+        });
+
+        // 2) refresh token 발급
+        const refreshToken = jwt.sign({
+            user_id : data.user_id
+        }, process.env.REFRESH_TOKEN_KEY, {
+            expiresIn : "20m"
+        });
+
+        // 중복 로그인 방지 위해
+        await users.userRefresh(user_id, refreshToken);
+        req.session.access_token = accessToken;
+        req.session.refresh_token = refreshToken;
+
+        console.log("userSelect 결과: ", data);
         return data;
     } catch (error) {
-        console.log("error(controller) : 로그인 실패");
+        console.log("error(controller) : 로그인 실패", error);
     }
 }
 
@@ -48,7 +73,7 @@ exports.verifyLogin = async function(req, res, next) {
                     console.log("refresh token 만료");
                     res.send("refresh token 만료 | 다시 로그인 하세요");
                 }else {
-                    const data = await userSelect(ref_decoded.user_id); // 해석된 payload 값에 해당 user_id가 있으면
+                    const data = await users.userSelect(ref_decoded.user_id); // 해석된 payload 값에 해당 user_id가 있으면
                     console.log(ref_decoded.user_id);
                     console.log(data.refresh);
     
@@ -58,7 +83,7 @@ exports.verifyLogin = async function(req, res, next) {
                             mail : "user1@naver.com",
                             nick : "user1"
                         }, process.env.ACCESS_TOKEN_KEY, {
-                            expiresIn : "5s"
+                            expiresIn : "5m"
                         });
     
                         req.session.access_token = accessToken;
