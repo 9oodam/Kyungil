@@ -9,14 +9,33 @@
 </head>
 <body>
     <div class="top">
+        <!-- token 유효 시간 표시 -->
+        <% if(data == null) { %>
+            <div class="access-time">Left Time: </div>
+        <% }else { %>
+            <div class="access-time">Left Time: <%=  %></div>
+        <% } %>
+        
+        <!-- 로그아웃 -->
+        <% if(data == null) { %>
+            <div></div>
+        <% }else { %>    
+            <a href="/logout"><div class="logout-btn">Logout</div></a>
+        <% } %>
+
         <!-- 로그인 된 유저 이름 표시 -->
-        <h2>Hello</h2>
+        <% if(data == null) { %>
+            <h2>Hello :D</h2>
+        <% }else { %>
+            <h2>Hello <%= data.user_id %> :D</h2>
+        <% } %>
     </div>
     <div class="middle">
         <div class="text">
             <p>Signup</p>
             <p>Login</p>
             <p>Board</p>
+            <p>MyPage</p>
         </div>
         <div class="btn_wrap">
             <a href="/signup">
@@ -28,7 +47,13 @@
             <a href="/list">
                 <div class="btn"></div>
             </a>
+            <a href="/mypage">
+                <div class="btn"></div>
+            </a>
         </div>
     </div>
 </body>
+<script>
+
+</script>
 </html>

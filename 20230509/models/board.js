@@ -7,7 +7,7 @@ const posts = {
             console.log(result);
         } catch (error) {
             console.log("error(model) :테이블 없음");
-            await mysql.query("CREATE TABLE posts(id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(30), details VARCHAR(200), name VARCHAR(10), thumbs INT)");
+            await mysql.query("CREATE TABLE posts(id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(30), details VARCHAR(200), name VARCHAR(10), date DATE DEFAULT now(), thumbs INT)");
         }
     },
 
@@ -30,10 +30,10 @@ const posts = {
         }
     },
 
-    insert : async function(title, details) {
-        console.log(title, details);
+    insert : async function(title, details, name) {
+        console.log(title, details, name.user_id);
         try {
-            await mysql.query("INSERT INTO posts (title, details, thumbs) VALUES (?, ?, 0)", [title, details]);
+            await mysql.query("INSERT INTO posts (title, details, name, thumbs) VALUES (?, ?, ?, 0)", [title, details, name.user_id]);
             console.log("글 추가 성공");
         } catch (error) {
             console.log("error(model) : 글 추가 실패");
@@ -62,7 +62,7 @@ const posts = {
     thumbsUp : async function(id) {
         try {
             await mysql.query("UPDATE posts SET thumbs = thumbs + 1 WHERE id = ?", [id]);
-            console.log("좋아요 증가");
+            //console.log("좋아요 증가");
         } catch (error) {
             console.log("error(model) : 좋아요 증가 실패");
         }

@@ -5,7 +5,7 @@ const dot = require("dotenv").config();
 
 
 // controller 에서 작성한 내용 가져오기
-const {ViewPostAll, SelectPost, Insert, Update, Delete, InsertComment, ViewComment, ThumbsUp, DeleteComment, verifyLogin} = require("../controllers/controller");
+const {Login, ViewPostAll, SelectPost, Insert, Update, Delete, InsertComment, ViewComment, ThumbsUp, DeleteComment, verifyLogin} = require("../controllers/controller");
 
 
 // list page (게시판 페이지)

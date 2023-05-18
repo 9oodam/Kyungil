@@ -17,7 +17,7 @@ body {
     position: absolute; bottom: 5%;
 }
 .top p {
-    position: absolute; top: 5px; left: 15px;
+    position: absolute; top: 10px; left: 10px;
     color: black;
 }
 
@@ -47,6 +47,10 @@ body {
 .detail input {
     width: 400px; height: 35px;
     margin: 0 0 30px 0;
+}
+.detail textarea {
+    width: 400px; height: 280px;
+    resize: none;
 }
 .detail .form {
     margin-top: 100px;

@@ -40,6 +40,11 @@ form input {
     width: 400px; height: 35px;
     margin: 0 0 30px 0;
 }
+form textarea {
+    width: 400px; height: 280px;
+    resize: none;
+    margin: 0 0 30px 0;
+}
 form button {
     width: 100px; height: 40px;
     display: flex; justify-content: center; align-items: center;

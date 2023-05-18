@@ -27,9 +27,9 @@ exports.Signup = async function(req, res) {
 exports.Login = async function(req, res) {
     const {user_id, user_pw} = req.body;
 
-    console.log(req.body);
     try {
         const data = await users.userSelect(user_id);
+        console.log("userSelect 결과: ", data);
 
         // 1) access token 발급
         const accessToken = jwt.sign({
@@ -44,7 +44,7 @@ exports.Login = async function(req, res) {
         const refreshToken = jwt.sign({
             user_id : data.user_id
         }, process.env.REFRESH_TOKEN_KEY, {
-            expiresIn : "20m"
+            expiresIn : "10m"
         });
 
         // 중복 로그인 방지 위해
@@ -52,7 +52,8 @@ exports.Login = async function(req, res) {
         req.session.access_token = accessToken;
         req.session.refresh_token = refreshToken;
 
-        console.log("userSelect 결과: ", data);
+        const data2 = await users.userLoggedIn(user_id);
+        
         return data;
     } catch (error) {
         console.log("error(controller) : 로그인 실패", error);
@@ -71,11 +72,13 @@ exports.verifyLogin = async function(req, res, next) {
                 if(err) {
                     // refresh token도 썩었으면
                     console.log("refresh token 만료");
+                    // 유저 강제 로그아웃
+                    users.userLoggedOut();
                     res.send("refresh token 만료 | 다시 로그인 하세요");
                 }else {
                     const data = await users.userSelect(ref_decoded.user_id); // 해석된 payload 값에 해당 user_id가 있으면
-                    console.log(ref_decoded.user_id);
-                    console.log(data.refresh);
+                    //console.log(ref_decoded.user_id);
+                    //console.log(data.refresh);
     
                     if(data.refresh == refresh_token) { // 접속했던 사람인지 확인
                         const accessToken = jwt.sign({ // access token 재발급
@@ -104,6 +107,23 @@ exports.verifyLogin = async function(req, res, next) {
     });
 }
 
+exports.CheckLoggedUser = async (req, res) => {
+    try {
+        const data = await users.findLoggedUser();
+        return data;
+    } catch (error) {
+        console.log("error(controller) : 로그인 된 유저 정보 확인 실패")
+    }
+}
+
+exports.UserReset = async (req, res) => {
+    try {
+        await users.userLoggedOut();
+    } catch (error) {
+        console.log("error(controller) : 유저 로그인 초기화 실패");
+    }
+}
+
 
 // posts
 exports.ViewPostAll = async function(req, res) {
@@ -127,8 +147,10 @@ exports.SelectPost = async function(req, res) {
 
 exports.Insert = async function(req, res) {
     const {title, details} = req.body;
+    const name = await users.findLoggedUser();
+    console.log("(con) 게시글 작성한 유저 :", name);
     try {
-        await posts.insert(title, details);
+        await posts.insert(title, details, name);
     } catch (error) {
         console.log("error(controller) : 글 추가 실패");
     }
@@ -179,9 +201,9 @@ exports.ViewComment = async function(req, res) {
 exports.InsertComment = async function(req, res) {
     const {id} = req.params;
     const {content} = req.body;
-    console.log(id, content);
+    const name = await users.findLoggedUser();
     try {
-        await comments.insertComment(id, content);
+        await comments.insertComment(id, content, name);
         return id;
     } catch (error) {
         console.log("error(controller) : 댓글 추가 실패");

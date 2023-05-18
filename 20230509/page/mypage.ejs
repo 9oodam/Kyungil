@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>list</title>
+    <title>mypage</title>
     <link rel="stylesheet" href="/css/list.css">
 </head>
 <body>
     <div class="top">
         <a href="/"><p><- Turn to main</p></a>
-        <h2>Board</h2>
+        <h2>My Page</h2>
     </div>
     <div class="middle">
         <div class="board_wrap">
@@ -19,15 +19,13 @@
                     <li class="list_top">
                         <div class="list_no">No</div>
                         <div class="list_title">Title</div>
-                        <div class="list_name">Name</div>
-                        <div class="list_up">Delete</div>
+                        <div class="list_del">Delete</div>
                         <div class="list_up">Update</div>
                     </li>
                     <% data.forEach((el, index) => { %>
                         <li>
                             <div class="list_no"><%= el.id %></div>
                             <div class="list_title"><a href="/list/detail/<%= el.id %>"><%= el.title %></a></div>
-                            <div class="list_name"><%= el.name %></div>
                             <div class="list_del"><a href="/list/delete/<%= el.id %>">( ´-｀)</a></div>
                             <div class="list_up"><a href="/list/edit/<%= el.id %>">σ(・・ )</a></div>
                         </li>

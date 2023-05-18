@@ -40,7 +40,7 @@ app.use(session({
 app.use("/", mainRouter);
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
-app.use("/list", listRouter);
+app.use("/list", listRouter); // verifyLogin 추가 예정
 
 
 // 서버 대기 상태

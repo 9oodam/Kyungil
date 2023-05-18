@@ -11,9 +11,9 @@ const comments = {
         }
     },
 
-    insertComment : async function(id, content) {
+    insertComment : async function(id, content, name) {
         try {
-            await mysql.query("INSERT INTO comment (postsID, content) VALUES ((SELECT id FROM posts WHERE id = ?), ?)", [id, content]);
+            await mysql.query("INSERT INTO comment (postsID, content, name) VALUES ((SELECT id FROM posts WHERE id = ?), ?, ?)", [id, content, name.user_id]);
             console.log("댓글 추가 성공");
         } catch (error) {
             console.log(id, content);

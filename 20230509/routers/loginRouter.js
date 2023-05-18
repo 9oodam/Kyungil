@@ -21,14 +21,14 @@ router.post('/', async (req, res) => {
     console.log("로그인 인풋(router) : ", req.body);
     try {
         const data = await Login(req, res);
-        console.log("로그인 데이터 : ", data);
+        //console.log("(router) 로그인 된 유저 아이디 : ", data.user_id);
 
         // 로그인 실패
         if(data === undefined) {
             res.render('loginErr');
         // 로그인 성공
         }else {
-            res.render('main');
+            res.render('main', {data});
         }
     } catch (error) {
         console.log("error(router) : 로그인 실패");
