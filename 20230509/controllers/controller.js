@@ -52,12 +52,24 @@ exports.Login = async function(req, res) {
         req.session.access_token = accessToken;
         req.session.refresh_token = refreshToken;
 
-        const data2 = await users.userLoggedIn(user_id);
+        await users.userLoggedIn(user_id);
         
-        return data;
+        return {data};
     } catch (error) {
         console.log("error(controller) : 로그인 실패", error);
     }
+}
+
+// refresh token 유효시간 계산
+exports.CheckRemainTime = async function(req, res) {
+    const {refresh_token} = req.session;
+    const decodedToken = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_KEY);
+    const remainTime = decodedToken.exp - Math.floor(Date.now() / 1000);
+    const remainTimeM = Math.floor(remainTime / 60);
+    const remainTimeS = remainTime % 60;
+
+    console.log("(con) 유효시간: ", remainTimeM, remainTimeS);
+    return {remainTimeM, remainTimeS};
 }
 
 exports.verifyLogin = async function(req, res, next) {
