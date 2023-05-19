@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+    <h2>User page</h2>
+    <ul>
+        <% data.forEach((el) => { %>
+            <li>
+                <span class="name"><%= el.name %></span>님, <%= el.age %>살, <%= el.msg %>
+                <input type="text" class="item-input"><button class="item-btn">글 등록</button>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+<script>
+    // AJAX : 요청과 응답에 대한 처리를 할 수 있게 도와주는 메소드
+    window.onload = function() {
+        let itemBtns = document.querySelectorAll(".item-btn");
+        itemBtns.forEach((el, index) => {            
+            el.onclick = () => {
+                let itemInput = document.querySelectorAll(".item-input")[index].value;
+                let name = document.querySelectorAll('.name')[index].innerText;
+
+                $.ajax({
+                    url : "/create_post",
+                    type : "post",
+                    data : {name, itemInput}
+                });
+            }
+        });
+    }
+</script>
+</html>
