@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><main></main></title>
+</head>
+<body>
+    <h2>Main page</h2>
+    <h3>User : <%= data.name %></h3>
+
+    <a href="/board/view/<%= data.id %>">Go to board</a>
+    <form action="/board/create_board" method="post">
+        <label for="">Content</label>
+        <input type="text" name="user_post">
+        <button>Submit</button>
+    </form>
+</body>
+</html>
