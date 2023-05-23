@@ -21,7 +21,7 @@ exports.login = async (req, res) => {
                 expiresIn : "5m"
             });
 
-            req.session .access_token = token;
+            req.session.access_token = token;
             res.redirect('/board');
         }else {
             res.send("비밀번호 틀림");
