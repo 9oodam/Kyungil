@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Admin</h2>
+    <ul>
+        <% data.forEach((user, index) => { %>
+        <li>
+            <p><%= index+1 %></p>
+            <p>Name : <%= user.name %></p>
+            <p>ID : <%= user.user_id %></p>
+            <p>PW : <%= user.user_pw %></p>
+            <p>Grade : <%= user.grade %></p>
+            <form action="/admin/upgrade/<%= user.id %>">
+                <button>Upgrade</button>
+            </form>
+            <form action="/admin/downgrade/<%= user.id %>">
+                <button>Downgrade</button>
+            </form>
+        </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

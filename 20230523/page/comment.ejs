@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>comment</title>
+    <style>
+        body {
+            padding: 0; margin: 0;
+            background-color: aliceblue;
+        }
+        .wrap {
+            width: 100vw; height: 100%;
+            display: flex; flex-direction: row;
+        }
+        .comment {
+            width: 50%; height: 100%;
+            border: 1px solid;
+        }
+        .comment_view {
+            width: 100%; height: calc(100vh - 300px);
+            border: 1px solid;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow-y : scroll;
+        }
+        ul {
+            width: 90%;
+        }
+        li {
+            list-style: none;
+            display: flex;
+        }
+        li > div {
+            width: 200px; height: 50px;
+            box-sizing: border-box;
+            border-bottom: 1px solid;
+            display: flex;
+            justify-content: center; align-items: center;
+        }
+        .list_no, .list_name, .list_del, .list_up {
+            width: 10%;
+        }
+        .list_title {
+            width: 20%
+        }
+        .list_detail, .list_content {
+            width: 40%
+        }
+        .comment_write {
+            width: 100%; height: 300px;
+            border: 1px solid;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        input, textarea {
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="comment">
+            <div class="comment_view">
+                <ul>
+                    <li class="list_top">
+                        <div class="list_no">No</div>
+                        <div class="list_content">Content</div>
+                        <div class="list_name">Name</div>
+                        <div class="list_del">Delete</div>
+                        <div class="list_up">Update</div>
+                    </li>
+                </ul>
+                <% if(!data2) { %>
+                    <div>No comments</div>
+                <% }else { %>
+                <ul>
+                    <% data2.forEach((el, index) => { %>
+                    <li>
+                        <div class="list_no"><%= index+1 %></div>
+                        <div class="list_content"><%= el.content %></div>
+                        <div class="list_name"><%= el.name %></div>
+                        <div class="list_del"><a href="/board/deleteC/<%= el.id %>">Delete</a></div>
+                        <div class="list_up"><a href="/board/editC/<%= el.id %>">Update</a></div>
+                    </li>
+                    <% }); %>
+                </ul>
+                <% } %>
+            </div>
+            <div class="comment_write">
+                <form action="/insertC" method="post">
+                    <label for="">Content</label><br>
+                    <textarea name="content" id="" cols="30" rows="10"></textarea><br><br>
+                    <button>Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
