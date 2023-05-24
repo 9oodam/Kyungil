@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- socket.io 모듈을 사용해서 연결하면 내부적으로 루트 경로에 socket.io.js 가 동적으로 생김
+        스크립트 안에 있는 연결 객체를 사용해서 소켓 연결을 시도 -->
+</head>
+<body>
+    <h2>Main</h2>
+    <label for="">Text</label><br>
+    <input type="text" id="text"><br>
+    <label for="">User</label><br>
+    <input type="text" id="user"><br>
+    <button id="btn">Send</button>
+</body>
+<script>
+    // 윈도우가 연결되면 소켓 객체를 사용해서 연결
+    window.onload = () => {
+        // io 객체의 connect() 를 통해서 연결
+        const socket = io.connect();
+
+        // 클라이언트가 서버측에서 해당 이벤트(hi)를 push 하면 실행
+        socket.on("hi", (data) => {
+            alert(data);
+        });
+
+        // 클라이언트에서 서버측으로 이벤트를 push
+        btn.onclick = () => {
+            socket.emit("hi", {msg : text.value, id : user.value});
+        }
+    }
+
+    // 프론트 -> 버튼을 눌러서 hi 이벤트를 push
+
+    // 서버 -> hi 이벤트가 등록되어있으면 실행
+    // io.sockets.to(data.id).emit("hi", data.msg); 해당 socket에 hi 이벤트를 서버측에서 push
+
+    // 해당 이벤트를 push 받은 클라이언트 측에서 이벤트 실행
+</script>
+</html>
