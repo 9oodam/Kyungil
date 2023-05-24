@@ -18,10 +18,9 @@ exports.gradeUpgrade = async (req, res) => {
         console.log(user);
         console.log(grade);
         console.log(id);
-        if(grade == 0) {
-            await User.update({grade : 1}, {where : {id}});
-            res.redirect('/admin');
-        }
+
+        await User.update({grade : grade+1}, {where : {id}});
+        res.redirect('/admin');
     } catch (error) {
         console.log(error);
     }
@@ -33,10 +32,8 @@ exports.gradeDowngrade = async (req, res) => {
         const user = await User.findOne({where : {id}});
         const grade = user.grade;
 
-        if(grade == 1) {
-            await User.update({grade : 0}, {where : {id}});
-            res.redirect('/admin');
-        }
+        await User.update({grade : grade-1}, {where : {id}});
+        res.redirect('/admin');
     } catch (error) {
         console.log(error);
     }

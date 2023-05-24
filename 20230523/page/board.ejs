@@ -78,7 +78,7 @@
                     <% data.forEach((el, index) => { %>
                     <li>
                         <div class="list_no"><%= index+1 %></div>
-                        <div class="list_title"><a href="/board/comment/<%= el.id %>"><%= el.title %></a></div>
+                        <div class="list_title"><a href="/board/commentView/<%= el.id %>"><%= el.title %></a></div>
                         <div class="list_detail"><%= el.detail %></div>
                         <div class="list_name"><%= el.name %></div>
                         <div class="list_del"><a href="/board/delete/<%= el.id %>">Delete</a></div>

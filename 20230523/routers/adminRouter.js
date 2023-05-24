@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const {isLogin} = require("../middleware/loginMid");
-const {gradeCheck} = require("../middleware/gradeMid");
+const {adminCheck} = require("../middleware/gradeMid");
 const {adminView, gradeUpgrade, gradeDowngrade} = require("../controllers/adminCon");
 
 router.get('/', isLogin, async (req, res) => {
-    const grade = await gradeCheck(req, res);
+    const grade = await adminCheck(req, res);
     console.log(grade);
     if(grade == 3) {
         adminView(req, res);
