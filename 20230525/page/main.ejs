@@ -12,7 +12,7 @@
             height: 100vh;
         }
         .container {
-            width: 1000px; height: 500px;
+            width: 800px; height: 500px;
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
@@ -44,6 +44,9 @@
             box-sizing: border-box;
             display: flex;
         }
+        #send2 {
+            display: none;
+        }
         #send #msg {
             border: 0;
             box-sizing: border-box;
@@ -67,19 +70,19 @@
         }
         .join_text {
             background-color: aquamarine;
-            border: 1px solid rgb(56, 188, 144);
+            margin: 2px 0 2px 0;
         }
         .leave_text {
             background-color: gray;
-            border: 1px solid rgb(80, 80, 80);
+            margin: 2px 0 2px 0;
         }
         li {
             list-style: none;
         }
 
-
+        /* 접속 중인 유저 */
         .userList {
-            width: 500px; height: 500px;
+            width: 300px; height: 500px;
             border: 1px solid;
         }
         .idBtn {

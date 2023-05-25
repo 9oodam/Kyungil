@@ -34,11 +34,6 @@ io.on("connection", (socket) => {
         io.emit("userIn", userId, userName);
     });
 
-    // 접속 해제 유저
-    socket.on("userOut", (name) => {
-
-    });
-
     // 방에 유저가 접속하면 (2)
     socket.on("joinRoom", (room, name) => {
         // join() : 방에 입장
