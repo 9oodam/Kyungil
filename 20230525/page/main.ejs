@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body {
+            position: relative;
+            height: 100vh;
+        }
+        .container {
+            width: 1000px; height: 500px;
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid;
+            display: flex;
+        }
+        h3 {
+            text-align: center;
+        }
+
+        /* 귀여운 동물 카톡 */
+        .content {
+            width: 500px; height: 500px;
+            border: 1px solid;
+            position: relative;
+        }
+        #login {
+            width: 300px; height: 300px;
+            display: flex;
+            align-items: center; justify-content: center;
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #send {
+            position: fixed;
+            bottom: 0; left: 0;
+            width: 100%;
+            border: 1px solid;
+            box-sizing: border-box;
+            display: flex;
+        }
+        #send #msg {
+            border: 0;
+            box-sizing: border-box;
+            padding: 10px;
+            width: 85%;
+        }
+        #send #sendBtn {
+            background-color: aquamarine;
+            border: none;
+            box-sizing: border-box;
+            padding: 10px;
+            width: 15%;
+            cursor: pointer;
+        }
+        #msgWrap {
+            margin: 0; padding: 0;
+        }
+
+        #main {
+            display: none;
+        }
+        .join_text {
+            background-color: aquamarine;
+            border: 1px solid rgb(56, 188, 144);
+        }
+        .leave_text {
+            background-color: gray;
+            border: 1px solid rgb(80, 80, 80);
+        }
+        li {
+            list-style: none;
+        }
+
+
+        .userList {
+            width: 500px; height: 500px;
+            border: 1px solid;
+        }
+        .idBtn {
+            background-color: rgb(209, 255, 240);
+            margin: 2px 0 2px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h3>귀여운 동물 카톡</h3>
+    
+            <div id="login">
+                <p>로그인</p>
+                <input type="text" id="username">
+                <button id="loginBtn">접속</button>
+            </div>
+    
+            <div id="main">
+                <!-- 방 고르기 -->
+                <select name="" id="rooms">
+                    <option value="고양이 방">고양이 방</option>
+                    <option value="강아지 방">강아지 방</option>
+                </select>
+    
+                <ul id="msgWrap">
+                </ul>
+                <!-- 일반 대화 -->
+                <div id="send">
+                    <input type="text" id="msg">
+                    <button id="sendBtn">전송</button>
+                </div>
+                <!-- 귓속말 -->
+                <div id="send2">
+                    <input type="text" id="msg2">
+                    <button id="sendBtn2">귓속말</button>
+                </div>
+            </div>
+        </div>
+        <div class="userList">
+            <h3>접속 중인 유저</h3>
+
+            <div id="userWrap">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = () => {
+        loginBtn.onclick = () => {
+            login.style.display = "none";
+            main.style.display = "block";
+
+            const name = username.value;
+            console.log("로그인 한 유저 이름 : ", name);
+
+            // rooms.options : 현재 옵션들의 배열
+            // rooms.selectedIndex : 현재 옵션들의 value
+            let room = rooms.options[rooms.selectedIndex].value; // 선택한 인덱스의 옵션 value 값
+            console.log("선택한 방의 value : ", room);
+
+            // 소켓 연결 시도 (1)
+            const socket = io.connect();
+            socket.emit("joinRoom", room, name);
+
+            rooms.onchange = (e) => {
+                // 이벤트가 일어난 태그
+                let el = e.target;
+                console.log(el.selectedIndex);
+
+                // 해당 유저가 room에서 떠남
+                socket.emit("leaveRoom", room, name);
+                room = rooms.options[el.selectedIndex].value;
+                socket.emit("joinRoom", room, name);
+            }
+
+            // 유저가 방에 들어왔을 때 (3)
+            socket.on("joinRoom", (room, name) => {
+                msgWrap.innerHTML += `
+                <li class="join_text">
+                    ${name}님이 ${room}에 입장하셨습니다.
+                </li>
+                `;
+            });
+
+            sendBtn.onclick = () => {
+                socket.emit("chat", room, name, msg.value);
+                msg.value = "";
+            }
+
+            socket.on("chat", (name, msg) => {
+                msgWrap.innerHTML += `
+                <li>
+                    ${name} : ${msg}
+                </li>
+                `;
+            });
+
+            // 유저가 방에서 나갔을 때
+            socket.on("leaveRoom", (room, name) => {
+                msgWrap.innerHTML += `
+                <li class="leave_text">
+                    ${name}님이 ${room}에서 퇴장하셨습니다.
+                </li>
+                `;
+            });
+
+            sendBtn2.onclick = () => {
+                socket.emit("chat2", msg2.value, name, msg.value);
+                msg.value = "";
+            }
+
+            
+            // 접속 중인 유저 띄우기
+            socket.emit("userIn", name); 
+
+            socket.on("userIn", (userId, userName) => {
+                userWrap.innerHTML = "";
+                userId.forEach((el, index) => {
+                    userWrap.innerHTML += `
+                    <div class="users">
+                        <div class="idBtn">
+                            ${userName[index]} | ${userId[index]}
+                        </div>
+                    </div>
+                    `;
+
+                    let idBtns = document.querySelectorAll(".idBtn");
+                    console.log(idBtns);
+                    idBtns.forEach((el, index) => {
+                        idBtns[index].addEventListener("click", () => {
+                            console.log("아이디 클릭해서 귓속말 보내기", index);
+                            socket.emit("chat2", userId[index], name, msg.value);
+                            msg.value = "";
+                        });
+                    });
+                });
+            });
+        }
+    }
+</script>
+</html>
