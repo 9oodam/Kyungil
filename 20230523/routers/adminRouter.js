@@ -3,15 +3,7 @@ const {isLogin} = require("../middleware/loginMid");
 const {adminCheck} = require("../middleware/gradeMid");
 const {adminView, gradeUpgrade, gradeDowngrade} = require("../controllers/adminCon");
 
-router.get('/', isLogin, async (req, res) => {
-    const grade = await adminCheck(req, res);
-    console.log(grade);
-    if(grade == 3) {
-        adminView(req, res);
-    }else {
-        res.send("접근 권한이 없습니다")
-    }
-});
+router.get('/', isLogin, adminCheck, adminView);
 
 router.get('/upgrade/:id', gradeUpgrade);
 router.get('/downgrade/:id', gradeDowngrade);
