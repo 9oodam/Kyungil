@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>list</title>
+    <link rel="stylesheet" href="./style/loading.css">
+    <link rel="stylesheet" href="./style/list.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h3>List page</h3>
+
+    <div class="board_wrap">
+        <div class="board_body">
+            <ul class="board_list">
+                <li class="list_top">
+                    <div class="list_no">No</div>
+                    <div class="list_title">Title</div>
+                    <div class="list_detail">Detail</div>
+                    <div class="list_name">Name</div>
+                    <div class="list_date">Date</div>
+                    <div class="list_up">Delete</div>
+                    <div class="list_up">Update</div>
+                </li>
+                <li>
+                    <div class="div_wrap"></div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="board_bottom">
+            <form action="http://127.0.0.1:9019/list/insert" method="post">
+                <label for="">Title</label><br>
+                <input type="text" name="title"><br>
+                <label for="">Detail</label><br>
+                <textarea name="detail" id="" cols="30" rows="10"></textarea><br>
+                <button >Write</a></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 로딩 이미지 -->
+    <div id="isLoading">
+        <img src="./img/loading.gif" alt="loading">
+    </div>
+</body>
+<script>
+    async function getAPI() {
+        try {
+            const {data} = await axios.get('http://127.0.0.1:9019/list', {
+                withCredentials : true
+            });
+            const {post, user} = data;
+
+            let divWrap2 = document.querySelector(".div_wrap")
+            
+            post.forEach((el, index) => {
+                let divWrap = document.createElement("div");
+
+                let div1 = document.createElement("div");
+                let div2 = document.createElement("div");
+                let div3 = document.createElement("div");
+                let div4 = document.createElement("div");
+                let div5 = document.createElement("div");
+                let div6 = document.createElement("div");
+                let div7 = document.createElement("div");
+
+                div1.classList.add("list_no");
+                div2.classList.add("list_title");
+                div3.classList.add("list_detail");
+                div4.classList.add("list_name");
+                div5.classList.add("list_date");
+                div6.classList.add("list_del");
+                div7.classList.add("list_up");
+
+                div1.innerHTML = index+1;
+                div2.innerHTML = el.title;
+                div3.innerHTML = el.detail;
+
+                if(user[index].id == el.user_id) {
+                    let name = user[index].name
+                }
+                
+                div4.innerHTML = name;
+
+                let today = new Date();
+                let year = today.getFullYear();
+                let month = today.getMonth() + 1;
+                let day = today.getDate();
+                div5.innerHTML = `${year}.${month}.${day}`;
+                
+                div6.innerHTML = '<a href="http://127.0.0.1:9019/list/delete">Delete</a>';
+                div7.innerHTML = '<a href="http://127.0.0.1:9019/list/update">Update</a>';
+            
+                divWrap.append(div1, div2, div3, div4, div5, div6, div7);
+                divWrap2.append(divWrap);
+            });
+
+
+            isLoading.classList.add("disable");
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getAPI();
+</script>
+</html>

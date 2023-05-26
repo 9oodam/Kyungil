@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./style/loading.css">
+    <link rel="stylesheet" href="./style/main.css">
+</head>
+<body>
+    <h3>Main page</h3>
+
+    <!-- 로그인 된 유저 정보 -->
+    <div class="user_info">
+        <form action="http://127.0.0.1:9019/update" method="post">
+            <div class="name_wrap">
+                <p>Name</p>
+                <p id="user_name"></p>
+                <input type="text" name="user_name">
+            </div>
+            <div class="age_wrap">
+                <p>Age</p>
+                <p id="user_age"></p>
+                <input type="text" name="user_age">
+            </div>
+            <button>update</button>
+        </form>
+
+    </div>
+
+    <!-- 로그인 한 유저가 쓴 글 -->
+    <div>
+        <div class="board_wrap">
+            <div class="board_body">
+                <ul class="board_list">
+                    <li class="list_top">
+                        <div class="list_no">No</div>
+                        <div class="list_title">Title</div>
+                        <div class="list_detail">Detail</div>
+                        <div class="list_name">Name</div>
+                        <div class="list_date">Date</div>
+                    </li>
+                    <li>
+                        <div class="list_no" id="list_no"></div>
+                        <div class="list_title" id="list_title"></div>
+                        <div class="list_detail" id="list_detail"></div>
+                        <div class="list_name" id="list_name"></div>
+                        <div class="list_date" id="list_date"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 전체 글 페이지로 이동 -->
+    <div class="moveLink">
+        <a href="http://127.0.0.1:5500/20230526/frontEnd/list.html">Go to List</a>
+    </div>
+
+    <!-- 로딩 이미지 -->
+    <div id="isLoading">
+        <img src="./img/loading.gif" alt="loading">
+    </div>
+</body>
+<script>
+    async function getAPI() {
+        try {
+            const {data} = await axios.get('http://127.0.0.1:9019/login/view', {
+                // 브라우저가 서버로 쿠키를 전달할 수 있는 옵션
+                withCredentials : true
+            });
+            // const {data2} = await axios.get('http://127.0.0.1:9019/', {
+            //     withCredentials : true
+            // });
+
+            user_name.innerHTML = data?.name;
+            user_age.innerHTML = data?.age;
+
+            isLoading.classList.add("disable");
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    getAPI();
+</script>
+</html>
