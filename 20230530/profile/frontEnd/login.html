@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <label for="">ID</label>
+    <input type="text" id="user_id">
+    <label for="">PW</label>
+    <input type="text" id="user_pw">
+    <button id="loginBtn">Login</button>
+</body>
+<script>
+    loginBtn.onclick = () => {
+        const form = new FormData();
+
+        form.append("user_id", user_id.value);
+        form.append("user_pw", user_pw.value);
+
+        axios.post('http://127.0.0.1:9021/login', form, {
+            "Content-Type" : "multipart/form-data"
+        }).then((e) => {
+            console.log("로그인 정보 전달 완료");
+            console.log(e.data);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <img src="" alt="">
+</body>
+<script>
+    uploadBtn.onclick = () => {
+        // new FormData (자바스크립트 내장객체) : form data를 동적으로 만들어서 form의 데이터형식으로 보내기
+        const form = new FormData();
+
+        // html상에서 name으로 키를 전달하던 부분
+        // append(키, 값)
+        form.append("imgs", imgs.value);
+
+        // input의 파일 내용 가져오기
+        console.log(file.files[0]);
+        form.append("upload", file.files[0]);
+
+        // post(경로, 보낼 데이터, )
+        axios.post('http://127.0.0.1:9020/upload', form, {
+            // 보낼 때 파일이 포함 되어있으면
+            // 헤더의 내용으로 인코딩된 폼 데이터로 전송
+            "Content-Type" : "multipart/form-data"
+        }).then((e) => {
+            console.log("전달 완료");
+            console.log(e.data);
+        }).catch((err) => {
+            console.log(error);
+        });
+    }
+</script>
+</html>
