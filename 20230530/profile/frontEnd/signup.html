@@ -8,27 +8,14 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <label for="">ID</label>
-    <input type="text" id="user_id">
-    <label for="">PW</label>
-    <input type="text" id="user_pw">
-    <button id="signupBtn">Signup</button>
+    <h3>Signup page</h3>
+
+    <form action="http://127.0.0.1:9021/signup" method="post">
+        <label for="">ID</label><br>
+        <input type="text" name="user_id"><br>
+        <label for="">PW</label><br>
+        <input type="password" name="user_pw"><br><br>
+        <button>Signup</button>
+    </form>
 </body>
-<script>
-    signupBtn.onclick = () => {
-        const form = new FormData();
-
-        form.append("user_id", user_id.value);
-        form.append("user_pw", user_pw.value);
-
-        axios.post('http://127.0.0.1:9021/signup', form, {
-            "Content-Type" : "multipart/form-data"
-        }).then((e) => {
-            console.log("회원가입 정보 전달 완료");
-            console.log(e.data);
-        }).catch((err) => {
-            console.log(err);
-        });
-    }
-</script>
 </html>

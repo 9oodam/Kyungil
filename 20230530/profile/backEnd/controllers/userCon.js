@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 exports.Signup = async (req, res) => {
     try {
-        const {name, user_id, user_pw} = req.body;
+        const {user_id, user_pw} = req.body;
 
         const user = await User.findOne({where : {user_id}}); // 중복 체크
         if(user != null) {
@@ -16,8 +16,7 @@ exports.Signup = async (req, res) => {
 
         User.create({
             user_id,
-            user_pw : hash,
-            img : ""
+            user_pw : hash
         });
 
         res.redirect('http://127.0.0.1:5500/20230530/profile/frontEnd/login.html');
@@ -32,6 +31,7 @@ exports.Login = async (req, res) => {
         const {user_id, user_pw} = req.body;
 
         const user = await User.findOne({where : {user_id}});
+
         if(user == null) {
             return res.send("아이디 없음");
         }
@@ -46,8 +46,7 @@ exports.Login = async (req, res) => {
             });
 
             req.session.access_token = token;
-            res.send("로그인 성공");
-            //res.redirect('/profile');
+            res.redirect('http://127.0.0.1:5500/20230530/profile/frontEnd/profile.html');
 
         }else {
             res.send("비밀번호 틀림 로그인 실패");
@@ -57,5 +56,3 @@ exports.Login = async (req, res) => {
         console.log(error);
     }
 }
-
-exports.modifyProfile

@@ -12,7 +12,8 @@ class User extends Sequelize.Model {
                 allowNull : false
             },
             img : {
-                type : Sequelize.STRING(300)
+                type : Sequelize.STRING(300),
+                defaultValue : 'profile.png'
             }
         }, {
             sequelize,

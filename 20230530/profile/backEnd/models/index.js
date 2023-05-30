@@ -9,10 +9,10 @@ const sequelize = new Sequelize(
     config.dev.username,
     config.dev.password,
     config.dev
-)
+);
 
 // 테이블 생성, 관계형 설정
-const db = {}
+const db = {};
 db.sequelize = sequelize;
 db.User = User;
 
