@@ -148,6 +148,7 @@
         this.selectNum = this.selectNum.bind(this);
       }
 
+      // 상태 변화 됐는지 확인
       componentDidUpdate() {
         console.log(this.state);
       }
@@ -159,15 +160,15 @@
       // 에로우 함수 써도 됨
       resetNum = () => {
         this.setState({ numArr6: [] });
-        this.setState({ numArr45: this.initailization() });
+        this.setState({ numArr45: this.initialization() });
       };
 
-      initailization() {
+      // numArr45 배열 초기화
+      initialization() {
         let temp = [];
         for (let i = 1; i <= 45; i++) {
           temp.push(i);
         }
-        console.log(temp,'asdadfqtqweaqwer히히히')
         return temp;
       }
 
