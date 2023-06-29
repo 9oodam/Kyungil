@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    // Component : react UI의 기본 단위, 재사용성을 높임
+    // 상태, 속성을 가지고 있음
+    // react는 데이터의 흐름이 단방향성 (부모 -> 자식 O, 자식 -> 부모 X)
+
+    // Component Class
+    // Component 모양을 만들고 상속 받아서 사용 예정
+    class Component {
+        target;
+        state; // 상태값 컴포넌트의 유지되는 데이터
+
+        constructor(target) {
+            this.target = target; // 컴포넌트의 target을 설정
+            this.setup();
+            this.render();
+            console.log("최초 렌더링");
+        }
+
+        // 컴포넌트 초기 설정 함수 (렌더링 전에 동작)
+        setup() {
+            console.log("컴포넌트 초기 세팅");
+        }
+
+        // 컴포넌트 HTML 템플릿을 반환
+        template() {
+            return;
+        }
+
+        // 렌더링 (컴포넌트를 target 요소에 그림)
+        render() {
+            this.target.innerHTML = this.template();
+            this.setEvent();
+            console.log("컴포넌트 렌더 함수");
+        }
+
+        // 컴포넌트 이벤트 세팅
+        setEvent() {
+            console.log("컴포넌트 이벤트 세팅");
+        }
+
+        // 컴포넌트의 상태 업데이트 -> 리렌더링
+        setState(_state) {
+            this.state = {...this.state, ..._state} // 초기 상태값에 새로운 상태값 추가
+            this.render();
+            console.log("상태 업데이트");
+        }
+    }
+
+    // 가상 DOM 클래스 흉내내보기
+    class VirtualDOM {
+        // 매개변수로 전달받은 component 생성 후, target 요소 전달
+        constructor(component, target) {
+            this.Component = new component(target); // 새로 만든 컴포넌트 클래스 생성자 함수의 매개변수로 타겟 전달
+            console.log("VirtualDOM constructor");
+        }
+
+        // 컴포넌트 렌더링
+        render() {
+            this.Component.template();
+            console.log("VirtualDOM render")
+        }
+    }
+
+    // App class (컴포넌트 상속 받아서 정의)
+    class App extends Component {
+        // 오버라이딩
+        // App 컴포넌트 초기 세팅 함수
+        setup() {
+            this.state = {items : ["item 1", "item 2"]}
+            console.log("App setup")
+        }
+
+        // App 컴포넌트의 HTML을 생성해서 반환
+        template() {
+            const {items} = this.state;
+            return `
+            <ul>
+                ${items.map((item) => `<li>${item}</li>`)}
+            </ul>
+            <button>insert</button>
+            `;
+            console.log("App template")
+        }
+
+        // App 컴포넌트의 이벤트 등록
+        setEvent() {
+            this.target.querySelector("button").addEventListener("click", () => {
+                const {items} = this.state;
+                this.setState({items : [...items, `item ${items.length + 1}`]});
+                console.log("App setEvent")
+            });
+        }
+    }
+
+    // root를 선택자로 잡음
+    const root = new VirtualDOM(App, document.querySelector("#root"));
+    root.render();
+
+</script>
+</html>

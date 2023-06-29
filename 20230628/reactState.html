@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    // 내용이 들어가는 한 개만 먼저 가져옴
+    const root = document.querySelector("#root");
+
+    // DOM을 직접 다루지 않고 state(상태 값)으로 렌더링
+    let state = {
+        items : ["item 1", "item 2"]
+    }
+
+    // 그려주는 함수
+    const render = () => {
+        // 상태값이 아닌 변수를 그냥 사용하면 변수를 다시 선언해서 초기화 됨
+        // 보관해야 하는 값은 상태값으로 설정하기
+        let temp = 0;
+
+        const {items} = state;
+        root.innerHTML = `
+        <ul>
+            ${items.map((item) => `<li>${item}</li>`)}
+        </ul>
+        <button id="append">insert</button>
+        `;
+        document.querySelector("#append").addEventListener("click", () => {
+            // state 상태 변경 시키기
+            // react는 상태가 변하면 리렌더링 하기 위해 상태값을 주시하고 있음
+            // setState() 로만 변경하기
+            setState({items : [...items, `item ${items.length + 1}`]});
+            console.log(temp);
+            temp++; // ++해도 계속 초기화되기 때문에 0이 찍힘
+        })
+    }
+
+    const setState = (_state) => {
+        // 초기 상태값에 새로운 상태값 추가
+        state = {...state, ..._state};
+        // 상태값이 변경되면 렌더링 실행
+        render();
+    }
+
+    // 최초 렌더
+    render();
+</script>
+</html>

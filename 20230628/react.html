@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React, ReactDOM 라이브러리 -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel을 가져와서 JSX 문법 사용 예정 -->
+    <!-- 자바스크립트 코드를 변환(컴파일) 해주는 도구 -> 문법을 쉽게 고칠 수 있음 -->
+    <!-- JSX 구문을 브라우저에서 읽을 수 있는 자바스크립트로도 변환해줌 -->
+    <!-- 자바스크립트 문법은 꾸준히 진화했는데, 문법이 진화하면 ES6 -> ES5 로 변환 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script type="text/babel">
+    // React의 Component를 상속 받음
+    class LoginBtn extends React.Component {
+        constructor(props) {
+            // 부모 생성자 함수 호출
+            super(props);
+            // 컴포넌트의 상태
+            this.state = {
+                isLogin : false
+            }
+        }
+
+        // JSX 문법으로 스크립트 공간에 html 태그 사용 가능
+        render() {
+            return(
+                // {} : 자바스크립트 구문을 사용하겠다는 의미
+                <button onClick={() => {
+                    this.setState({isLogin : !this.state.isLogin}); // 클릭할 때마다 현재 상태의 반대값으로
+                    console.log(this.setState);
+                }}>
+                {this.state.isLogin ? "Logout" : "Login"}
+                </button>
+            )
+        }
+    }
+
+    // 루트 요소를 가상 DOM으로 생성
+    // createRoot() : 렌더링을 위한 루트 객체를 생성
+    const root = ReactDOM.createRoot(document.querySelector("#root")); // #root 태그를 루트로 설정
+    root.render(<LoginBtn id="2">Hi</LoginBtn>); // LoginBtn(컴포넌트)을 root에 렌더링
+</script>
+</html>
