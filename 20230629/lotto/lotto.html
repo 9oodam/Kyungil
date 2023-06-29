@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lotto</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <link rel="stylesheet" href="./lotto.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script type="text/babel">
+    let numArr45Sec = [];
+    for (let i = 1; i <= 45; i++) {
+      numArr45Sec.push(i);
+    }
+
+    // 추첨된 번호 공 1개
+    class CircleSelected extends React.Component {
+      constructor(props) {
+        super(props);
+      }
+
+      render() {
+        let color = "";
+        if(this.props.num <= 10) {
+            color = "rgb(255, 187, 0)";
+        }else if(11 <= this.props.num && this.props.num <= 20) {
+            color = "rgb(0, 76, 255)";
+        }else if(21 <= this.props.num && this.props.num <= 30) {
+            color = "rgb(236, 61, 54)";
+        }else if(31 <= this.props.num && this.props.num <= 40) {
+            color = "rgb(118, 118, 118)";
+        }else if(41 <= this.props.num && this.props.num <= 45) {
+            color = "rgb(11, 202, 7)";
+        }
+
+        return (
+            <div className="circle_selected" style={{backgroundColor : color}}>
+                <p>{this.props.num}</p>
+            </div>
+        );
+      }
+    }
+
+    // 추첨전 번호 공 1개
+    class CirclePrev extends React.Component {
+      constructor(props) {
+        super(props);
+      }
+
+      render() {
+        return (
+          <div className="circle_prev">
+            <p>{this.props.num}</p>
+          </div>
+        );
+      }
+    }
+
+    // 추첨전 숫자 45개 + 추첨 버튼 + 새로고침 버튼
+    class Top extends React.Component {
+      constructor(props) {
+        super(props);
+        // this.props.numArr45
+        // this.props.selectNum
+      
+        console.log(this.props.numArr45);
+      }
+
+      selectHandler = () => {
+        // 랜덤 숫자 뽑기
+        const value = Math.floor(Math.random() * 45 + 1);
+
+        // numArr45 중에 뽑힌 숫자 빼기
+        let index = this.props.numArr45.indexOf(value);
+        if(this.props.numArr45.length > 39) { // 6개까지만
+            if(index != -1) { // 중복방지
+                this.props.numArr45.splice(index, 1);
+                this.props.selectNum(value);
+            }
+        }
+      };
+
+      retryHandler = () => {
+        console.log("reset");
+        this.props.resetNum();
+      };
+
+      loop(num, index) {
+        return <CirclePrev key={index} num={num} />;
+      }
+
+      render() {
+        console.log("Top render");
+        return (
+          <>
+            <div className="num_wrap">{this.props.numArr45.map(this.loop)}</div>
+            <div className="btn_wrap">
+              <div onClick={this.selectHandler}>추첨</div>
+              <div onClick={this.retryHandler}>다시하기</div>
+            </div>
+          </>
+        );
+      }
+    }
+
+    // 추첨된 숫자 6개 보여주는 컴포넌트
+    class Bottom extends React.Component {
+      constructor(props) {
+        super(props); // numArr
+      }
+
+      loop(num, index) {
+        return <CircleSelected key={index} num={num} />;
+      }
+
+      render() {
+        return (
+          <>
+            <div className="result_wrap">
+              {this.props.numArr6.map(this.loop)}
+            </div>
+          </>
+        );
+      }
+    }
+
+    // 추첨 기능을 담당하는 최상위 컴포넌트
+    class Lotto extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          numArr45: numArr45Sec,
+          numArr6: [],
+        };
+        this.selectNum = this.selectNum.bind(this);
+      }
+
+      componentDidUpdate() {
+        console.log(this.state);
+      }
+
+      // 이렇게 바인딩 해도 되고
+      selectNum(value) {
+        this.setState({ numArr6: [...this.state.numArr6, value] });
+      }
+      // 에로우 함수 써도 됨
+      resetNum = () => {
+        this.setState({ numArr6: [] });
+        this.setState({ numArr45: this.initailization() });
+      };
+
+      initailization() {
+        let temp = [];
+        for (let i = 1; i <= 45; i++) {
+          temp.push(i);
+        }
+        console.log(temp,'asdadfqtqweaqwer히히히')
+        return temp;
+      }
+
+      render() {
+        console.log("Lotto render");
+        return (
+          <>
+            <div className="top">
+              <Top
+                numArr45={this.state.numArr45}
+                selectNum={this.selectNum}
+                resetNum={this.resetNum}
+              />
+            </div>
+            <div className="bottom">
+              <Bottom numArr6={this.state.numArr6} />
+            </div>
+          </>
+        );
+      }
+    }
+
+    // 페이지 컴포넌트
+    class App extends React.Component {
+      render() {
+        console.log("App render");
+        return (
+          <div className="container">
+            <Lotto />
+          </div>
+        );
+      }
+    }
+
+    // 루트 요소 설정
+    const root = ReactDOM.createRoot(document.querySelector("#root"));
+    root.render(<App />);
+  </script>
+</html>
