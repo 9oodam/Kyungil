@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* ---------------- */
+.com {
+  border: 1px solid;
+}
+.red {
+  color: red;
+}
+.blue {
+  color: blue;
+}
