@@ -1,0 +1,5 @@
+{
+    // 설정
+    // presets : 자바스크립트 기능 또는 구문을 변환하는 babel 플러그인 작성
+    "presets" : ["@babel/preset-env"]
+}
