@@ -16,8 +16,8 @@ const BlockInside = ({result}) => {
     )
 }
 
-const Block = ({value, index}) => {
-    // 클릭했을 때 선택 못하게
+const Block = ({value, index, victory, setVictory}) => {
+    // 클릭했을 때 다시 선택 못하게
     const [isClick, setClick] = useState(false);
     function clickHandler() {
         if(isClick == false) {
@@ -55,7 +55,7 @@ const Block = ({value, index}) => {
                 setResult("flag");
 
                 // flag가 20개 되면 승리로 넘어가기
-                
+                setVictory(victory+1);
             }
         }
     }, [isClick])
@@ -74,6 +74,20 @@ const Field = () => {
         blocks.push(0);
     }
 
+    // 깃발 카운트 (20개 넘어가면 승리)
+    const [victory, setVictory] = useState(0);
+    // 상위 컴포넌트에서 만든 상태값을 하위 컴포넌트에서 수정하니 함수가 실행될 때마다 상위 컴포넌트가 새로 실행...
+    // 랜덤 값이 매번 바뀜
+
+    useEffect(() => {
+        //console.log("flag count : ", victory);
+        if(victory >= 20) {
+            setInterval(() => {
+                window.location.href = '/win';
+            }, 3100);
+        }
+    }, [victory]);
+
     // 랜덤 (20% 확률로 지뢰)
     for(let i=0; i<5; i++) {
         const random = Math.floor(Math.random() * blocks.length);
@@ -84,7 +98,7 @@ const Field = () => {
     return (
         <div className='field'>
             {blocks.map((value, index) => {
-                return <Block key={index} value={value} index={index} />
+                return <Block key={index} value={value} index={index} victory={victory} setVictory={setVictory} />
             })}
         </div>
     )
