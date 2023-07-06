@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 const Win = () => {
   return (
-    <div>
-        You Win!
+    <div className='lose'>
+        <p>You Win!</p>
         <Link to={"/"}>Replay</Link>
     </div>
   )
