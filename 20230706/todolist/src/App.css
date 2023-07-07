@@ -104,6 +104,10 @@
   color: white;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+}
+.list-container .lists .list-item:hover {
+  transform: scale(101%);
 }
 .list-item .index {
   position: absolute; left: 0;

@@ -1,5 +1,4 @@
 import React from 'react'
-import Subject from './Subject'
 import Button from './Button'
 
 const ListItem = ({value, index, del, fin}) => {
@@ -7,10 +6,16 @@ const ListItem = ({value, index, del, fin}) => {
     if(value.isFinish == true) {
         color = "rgb(100, 100, 100)"
     }
+
+    function moveToDetail(index) {
+        window.location.href = `/detail/${index}`;
+    }
+
     return (
+        <>
         <div className='list-item' style={{backgroundColor:color}}>
             <div className='index'>{index+1}</div>
-            <div className='title'>{value.title}</div>
+            <div className='title' onClick={() => {moveToDetail(index)}}>{value.title}</div>
             <div className='date'>{value.today} ~ {value.due}</div>
             <div className='content'>{value.content}</div>
 
@@ -23,6 +28,7 @@ const ListItem = ({value, index, del, fin}) => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 
