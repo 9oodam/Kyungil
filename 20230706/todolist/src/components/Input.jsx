@@ -28,7 +28,8 @@ const Input = ({list, setList}) => {
                 title : _title.value,
                 today : _today.value,
                 due : _due.value,
-                content : _content.value
+                content : _content.value,
+                isFinish : false
             }];
         
             console.log("추가 : ", submit);
