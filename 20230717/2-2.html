@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let scores = prompt("입력 : ");
+    console.log(scores);
+
+    let arr = scores.split(" ");
+    console.log(arr);
+
+    let scoreArr = [];
+    for(let i=0; i<arr.length; i++) {
+        scoreArr.push(Number(arr[i]));
+    }
+    console.log(scoreArr);
+
+    // 배열에서 높은 점수 순으로 정렬
+    scoreArr.sort();
+    scoreArr.reverse();
+    console.log(scoreArr)
+
+    // 1~3위 뽑기
+    
+
+
+</script>
+</html>

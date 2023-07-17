@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let a = [[1, 2], [2, 4]];
+    let b = [[1, 0], [0, 3]];
+    let c = [];
+
+    a[0][0] * b[0][0] // 1
+    a[0][1] * b[0][1] // 0
+
+    a[0][0] * b[1][0] // 0
+    a[0][1] * b[1][1] // 6
+
+    a[1][0] * b[0][0] // 2
+    a[1][1] * b[0][1] // 0
+
+    a[1][0] * b[1][0] // 0
+    a[1][1] * b[1][1] // 12
+
+    for(let i=0; i<2; i++) {
+
+        for(let j=0; j<2; j++) {
+            if(a[i][j] * b[i][j] == 0) {
+                console.log(-1);
+            }else {
+                // ?????????????????
+                console.log("1", a[i][j] * b[i][j])
+            }
+        }
+    }
+
+    // console.log(c);
+
+</script>
+</html>

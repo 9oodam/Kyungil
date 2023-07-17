@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 배열 출력
+    function swap(strArr, idx1, idx2) {
+        console.log(strArr);
+    }
+    function permute(strArr, begin, end) {
+        swap(strArr, strArr[1], strArr[2])
+    }
+    function permuteArray(strArr) {
+        permute(strArr, strArr[0], strArr[2])
+    }
+
+    permuteArray(["1", "2", "3"]);
+</script>
+</html>

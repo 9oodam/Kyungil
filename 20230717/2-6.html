@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <style>
+        body {
+            width: 100vw; height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .container {
+            width: 416px; height: 600px;
+            box-sizing: border-box;
+        }
+        #result-box {
+            width: 100%; height: 100px;
+            border: 1px solid;
+            box-sizing: border-box;
+            background-color: rgb(51, 51, 51);
+            color: white;
+            font-size: 30px; font-weight: bold;
+            padding: 25px;
+            display: flex; justify-content: end; align-items: center;
+        }
+        #pad-box {
+            width: 100%; height: 500px;
+            box-sizing: border-box;
+            display: flex; flex-wrap: wrap;
+        }
+        .pad {
+            width: 100px; height: 100px;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 30px; font-weight: bold;
+            margin: 2px;
+            color: white;
+            background-color: rgb(129, 128, 128);
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        .pad:hover {
+            transform: scale(102%);
+        }
+        .pad2 {
+            width: 204px;
+        }
+        .pad3 {
+            width: 308px;
+            background-color: rgb(81, 81, 81);
+        }
+        .op {
+            background-color: rgb(255, 174, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="result-box"></div>
+        <div id="pad-box">
+            <div class="pad pad3 ac">AC</div>
+            <div class="pad op">÷</div>
+            <div class="pad num">7</div>
+            <div class="pad num">8</div>
+            <div class="pad num">9</div>
+            <div class="pad op"> x </div>
+            <div class="pad num">4</div>
+            <div class="pad num">5</div>
+            <div class="pad num">6</div>
+            <div class="pad op">-</div>
+            <div class="pad num">1</div>
+            <div class="pad num">2</div>
+            <div class="pad num">3</div>
+            <div class="pad op">+</div>
+            <div class="pad pad2 num">0</div>
+            <div class="pad num">.</div>
+            <div class="pad op">=</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let result = document.getElementById("result-box");
+    let arr = [];
+
+    // AC 초기화
+    let ac = document.querySelector(".ac");
+    ac.addEventListener('click', () => {
+        result.innerHTML = '';
+        arr = [];
+    })
+
+    // 0~9 숫자 & 소숫점(.) 패드
+    let nums = document.querySelectorAll(".num");
+    for(let i=0; i<11; i++) {
+        nums[i].addEventListener('click', () => {
+            let numText = nums[i].innerText;
+            console.log(numText)
+            if(result.innerHTML == '' && numText == '.') { // 비어있는 상태에서 . 눌렀을 때
+                result.innerHTML += '0.'
+                arr.push('0');
+                arr.push('.');
+            }else {
+                result.innerHTML += numText;
+                arr.push(numText); // 누른 값 배열에 push
+            }
+        })
+    }
+
+    // 사칙연산 기호
+    let op = document.querySelectorAll(".op");
+    for(let i=0; i<5; i++) {
+        op[i].addEventListener('click', () => {
+            if(result.innerText == '') { // 비어있는 상태에서 기호 눌렀을 때
+                console.log(":(");
+            }else {
+                let opText = op[i].innerText;
+                console.log(opText);
+                if(opText == '=') { // '=' 누르면 계산 함수로
+                    result.innerHTML = '';
+                    calc(arr);
+                }else {
+                    result.innerHTML += opText;
+                    arr.push(opText);
+                }
+            }
+        })
+    }
+
+    // 계산
+    function calc(arr) {
+        console.log(arr)
+        arr.forEach((el) => {
+            if(el == 'x' || el == '÷' || el == '+' || el == '-') { // 기호가 있으면 기호를 기준으로 앞의 숫자와 뒤의 숫자를 구분
+                let index = arr.indexOf(el);
+                let num1 = parseFloat(arr.slice(0, index).join(''));
+                let num2 = parseFloat(arr.slice(index+1, arr.length).join(''));
+                console.log(num1)
+                console.log(num2)
+
+                if(el == "+") {
+                    add(num1, num2)
+                }else if(el == "-") {
+                    sub(num1, num2)
+                }else if(el == "x") {
+                    mul(num1, num2)
+                }else if(el == "÷") {
+                    div(num1, num2)
+                }
+            }
+        });
+
+
+    }
+
+    function add(num1, num2) {
+        result.innerHTML = num1 + num2;
+        arr = [result.innerHTML];
+    }
+    function sub(num1, num2) {
+        result.innerHTML = num1 - num2;
+        arr = [result.innerHTML];
+    }
+    function mul(num1, num2) {
+        result.innerHTML = num1 * num2;
+        arr = [result.innerHTML];
+    }
+    function div(num1, num2) {
+        result.innerHTML = num1 / num2;
+        arr = [result.innerHTML];
+    }
+</script>
+</html>

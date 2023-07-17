@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 공통 항목 찾기
+    function commonElements(kArray) {
+        let i, j;
+        let result = [];
+        for(i=0; i<kArray.length; i++) { // 3번씩 반복
+            console.log(i);
+            for(j=0; j<kArray[i].length; j++) { // 각 배열의 길이마다 반복
+                console.log(j);
+            }
+        }
+
+        // console.log(kArray[i][j]);
+        // if(kArray[0][j] == kArray[1][j] == kArray[2][j]) {
+        //     result.push(kArray[0][j])
+        // }
+
+        console.log(result)
+        // return result;
+    }
+
+    commonElements([[1, 2, 3], [1, 2, 3, 4], [1, 2]]);
+    // console.log(commonElements([[1, 2, 3], [1, 2, 3, 4], [1, 2]])); // [1, 2]
+</script>
+</html>

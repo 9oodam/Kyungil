@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 소인수 분해
+    function primeFactor(n) {
+        for(let i=1; i<n; i++) {
+            let divised = n / i;
+            if(divised % 1 == 0 && divised !== n) {
+                return divised;
+            }
+        }
+    }
+
+    function primeFactor2(n) {
+        let result;
+        for(let i=2; i<n; i++) {
+            for(let j=n; j>1; j--) {
+                if(i*j == n) {
+                    return `${i}, ${j}`;
+                }
+            }
+        }
+    }
+
+    // console.log(primeFactor(10));
+    console.log(primeFactor2(10));
+</script>
+</html>
