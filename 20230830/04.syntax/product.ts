@@ -2,10 +2,10 @@
 
 
 // 상품의 구조 정의
-// interface IProduct {
-//     name : string
-//     price : number
-// }
+interface IProduct {
+    name : string
+    price : number
+}
 
 class Product2 {
     // private : 접근 불가 키워드 (다른 곳에서 직접 참조 불가능)
