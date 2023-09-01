@@ -19,7 +19,7 @@ strategy.set('google', new GoogleAuthenticator())
 // { strategy : {EmailAuthenticator{authenticate}, KakaoAuthenticator{authenticate}, GoogleAuthenticator{authenticate}}, set(), login() }
 
 
-// 완성된 객체를 유저 서ㅣ스 클래스 생성자의 매개변수로 전달 및 유저 서비스 객체 생성
+// 완성된 객체를 유저 서비스 클래스 생성자의 매개변수로 전달 및 유저 서비스 객체 생성
 const userService = new UserService(strategy)
 
 // 유저 로그인 로직 클래스 생성 및 유저 서비스 로직 객체 생성자 매개변수로 전달
