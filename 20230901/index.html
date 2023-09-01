@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>최초의 제네시스 블록은 하드 코딩으로</h1>
+    <div>
+        <div id="firstBlock">
+            <label for="">version (버전 초기값)</label>
+            <h3 id="version"></h3>
+
+            <label for="">height (0번)</label>
+            <h3 id="height"></h3>
+
+            <label for="">timestamp (생성시간)</label>
+            <h3 id="timestamp"></h3>
+
+            <label for="">previous block hash (존재하지 않으므로 0으로 대체)</label>
+            <h3 id="previousHash"></h3>
+
+            <label for="">first block hash (0)</label>
+            <h3 id="presentHash"></h3>
+
+            <label for="">merkle root (최초이므로 0)</label>
+            <h3 id="merkleRoot"></h3>
+
+            <label for="">nonce (블록 생성시 연산 횟수)</label>
+            <h3 id="nonce"></h3>
+
+            <label for="">difficulty (생성주기 조절)</label>
+            <h3 id="difficulty"></h3>
+
+            <label for="">data</label>
+            <h3 id="data"></h3>
+        </div>
+    </div>
+</body>
+<script>
+    const blockData = {
+        version : "1.0.0",
+        height : 0,
+        timestamp : Date.now(),
+        previousHash : "0".repeat(64), // 64자리
+        presentHash : "0".repeat(64),
+        merkleRoot : "0".repeat(64),
+        nonce : 0,
+        difficulty : 0,
+        data: ["The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"]
+    }
+
+    for (const key in blockData) {
+        firstBlock.children[key].innerHTML = blockData[key];
+    }
+</script>
+</html>
