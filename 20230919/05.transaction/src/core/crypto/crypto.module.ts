@@ -1,0 +1,22 @@
+export class CryptoModule {
+    static hashToBinary(hash : string) : string {
+        let binary : string = "";
+
+        // 해시 문자열을 2글자씩 가지고 와서 반복 (16진수 -> 2진수)
+        for (let i = 0; i < hash.length; i+=2) { // i 2씩 증가
+            const hexByte = hash.substr(i, 2);
+
+            // 16진수의 byte를 10진수로 변환
+            const dec = parseInt(hexByte, 16);
+
+            // 10진수를 2진수 문자열로 변환 (8자리로 패딩)
+            const binaryByte = dec.toString(2).padStart(8, "0");
+
+            // 2진 byte를 최종 문자열에 추가
+            binary += binaryByte;
+        }
+
+        return binary;
+    }
+
+}
