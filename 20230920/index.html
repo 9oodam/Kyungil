@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+</head>
+<body>
+    
+</body>
+<script>
+    // web3.js 맛보기 (web3 네트워크와 상호작용)
+
+    // Ganache library 사용
+    // npm install ganache-cli
+    // npx ganache-cli
+
+    const web3 = new Web3("http://127.0.0.1:8545");
+
+    web3.eth.getAccounts().then(console.log);
+    web3.eth.getBalance("0xF71103053cfB32faf55370E7bECFE56b4773Cc13").then((data) => {
+        console.log(data);
+        // wei 라는 단위로 뜸 (가스비 연산에 사용하기 위해)
+        // 10**18 으로 측정
+
+        // 이더로 단위 변환
+        const value = web3.utils.fromWei(data);
+        console.log(value);
+    })
+
+</script>
+</html>
