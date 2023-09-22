@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "curl": "^0.1.4",
+    "ganache-cli": "^6.12.2",
+    "solc": "^0.8.21"
+  },
+  "name": "20230921",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
