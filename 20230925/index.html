@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+</head>
+<body>
+    <!-- 계정 정보 -->
+    <ul id="accounts"></ul>
+
+    <div>
+        <label for="">사용할 계정</label><br>
+        <input type="text" id="useAccount"><br><br>
+        <label for="">사용할 컨트랙트 (bin)</label><br>
+        <textarea name="" id="useContract" cols="30" rows="10">608060405234801561001057600080fd5b50610150806100206000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c8063209652551461003b5780635524107714610059575b600080fd5b610043610075565b60405161005091906100a1565b60405180910390f35b610073600480360381019061006e91906100ed565b61007e565b005b60008054905090565b8060008190555050565b6000819050919050565b61009b81610088565b82525050565b60006020820190506100b66000830184610092565b92915050565b600080fd5b6100ca81610088565b81146100d557600080fd5b50565b6000813590506100e7816100c1565b92915050565b600060208284031215610103576101026100bc565b5b6000610111848285016100d8565b9150509291505056fea2646970667358221220b57537ffc44c76631bd862cd5f98e742116f8d5a3f0e3a7d4df17688037a6d3e64736f6c634300080d0033</textarea><br>
+        <button id="sendTSbtn">컨트랙트 배포</button><br><br><br>
+
+        <div>카운트 앱</div>
+        <div id="counterValue"></div>
+        <button id="callBtn">조회</button>
+        <button id="sendBtn">증가</button>
+        <button id="sendBtn2">감소</button>
+    </div>
+</body>
+<script>
+    // ganache 테스트 환경과 연결
+    const web3 = new Web3("http://127.0.0.1:8545");
+
+    web3.eth.getAccounts().then((data) => {
+        let items = "";
+        data.forEach(async (i) => {
+            // getBalance() : wei 단위로 계정 잔액 조회
+            const balance = await web3.eth.getBalance(i);
+            // eth로 단위 변경
+            const eth_balance = await web3.utils.fromWei(balance);
+
+            items += `<li onclick=inputAccount('${i}')>${i} : ${eth_balance} ETH</li>`;
+            accounts.innerHTML = items;
+        });
+    });
+
+    const inputAccount = (i) => {
+        useAccount.value = i;
+    }
+
+    // 컨트랙트 배포
+    // npx solc --bin --abi 파일경로
+    // 수수료를 지불할 컨트랙트 배포자 계정 & bin 컴파일된 컨트랙트 코드 내용으로 트랜잭션 생성
+    sendTSbtn.onclick = () => {
+        web3.eth.sendTransaction({
+            from : useAccount.value, // 컨트랙트 배포자 계정
+            gas : "3000000", // 가스 제한량
+            data : useContract.value, // 컴파일된 컨트랙트 바이트 코드
+        }).then(console.log);
+
+        // 컨트랙트 배포 후 트랜잭션 처리 완료되면 응답으로 CA(컨트랙트 주소) 받아오기
+        // contractAddress : 0x080b37BdDB8B73984A6Ca4e688413133dd981D0d
+    }
+
+    // 배포한 컨트랙트 실행
+    // abi의 interface를 사용해서 컨트랙트 코드를 정의하고 실행
+    const abi = [
+        // 생성자 함수
+        // inputs : 매개변수
+        // stateMutability : 함수의 속성 (payable : 이더를 전달 받을 수 있는 상태 변환 함수, nopayable : 이더를 받지 않는 상태 전환 함수)
+        // type : 함수의 타입
+      { inputs: [], stateMutability: "nonpayable", type: "constructor" },
+
+        // name : 함수의 이름
+        // outputs : 함수의 출력값 (internalType : 상태변수에 대한 타입, name : 매개변수의 이름)
+        // stateMutability : 함수의 속성 (view : 상태 변경 없이 조회만)
+      { inputs: [], name: "getValue", outputs: [{ internalType: "uint256", name: "", type: "uint256" }], stateMutability: "view", type: "function" },
+
+      { inputs: [{ internalType: "uint256", name: "_value", type: "uint256" }], name: "setValue", outputs: [], stateMutability: "nonpayable", type: "function" },
+    ];
+
+    // 카운트의 값을 조회하는 함수
+    const getValue = async () => {
+        // 컨트랙트 함수의 내용과 우리가 전달할 매개변수를 전달해서 해시 코드로 변환
+        // encodeFunctionCall(abi 내용, 함수에 전달할 매개변수 값) : 16진수 문자열 반환
+        const getCodeHash = await web3.eth.abi.encodeFunctionCall(abi[1], []);
+        console.log(getCodeHash);
+
+        // call() : 원격 프로시저 호출 값을 조회 (읽기 전용)
+        const data = await web3.eth.call({
+            to : "0xE5f37eae022DB1f237532b0cCdE5129BdbC28177",
+            data : getCodeHash,
+        });
+        console.log(data); // 16진수로 변환된 값
+
+        // 10진수로 변환
+        const result = await web3.utils.toBN(data).toString(10);
+        console.log(result);
+
+        counterValue.innerHTML = result;
+        return parseInt(result);
+    }
+    // getValue();
+    callBtn.onclick = getValue();
+
+
+    // 카운트의 값을 변경하는 함수
+    const setValue = async () => {
+        const _getValue = await getValue();
+
+        const setCodeHash = await web3.eth.abi.encodeFunctionCall(abi[2], [_getValue + 1]);
+        console.log(setCodeHash); // 0x0000000000000000000000000000000000000000000000000000000000000002
+        // 앞의 0x0000 은 함수, 뒤의 2는 value, 가운데 0은 구분자(의미 X)
+
+        if(!useAccount.value) return alert("사용할 계정을 입력해주세요");
+        const tx = {
+            from : useAccount.value, // 수수료 지불할 계정
+            to : "0xE5f37eae022DB1f237532b0cCdE5129BdbC28177", // CA
+            data : setCodeHash,
+            gas : 500000,
+            gasPrice : 20000000,
+        }
+
+        const data = await web3.eth.sendTransaction(tx);
+        console.log(data);
+
+        getValue();
+    }
+    const setValue2 = async () => {
+        const _getValue = await getValue();
+        const setCodeHash = await web3.eth.abi.encodeFunctionCall(abi[2], [_getValue - 1]);
+        if(!useAccount.value) return alert("사용할 계정을 입력해주세요");
+        const data =  await web3.eth.sendTransaction({
+            from : useAccount.value,
+            to : "0xE5f37eae022DB1f237532b0cCdE5129BdbC28177",
+            data : setCodeHash,
+            gas : 500000,
+            gasPrice : 20000000,
+        })
+        getValue();
+    }
+    sendBtn.onclick = setValue;
+    sendBtn2.onclick = setValue2;
+</script>
+</html>
