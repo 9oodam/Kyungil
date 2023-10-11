@@ -21,7 +21,7 @@ const App = () => {
   useEffect(() => {
     if(web3 !== null) {
       if(contract) return;
-      const pokContract = new web3.eth.Contract(abi, "0xDA874FCf33b40ae8eE6C5903ab9AF5D27ccE4468", {data : ""});
+      const pokContract = new web3.eth.Contract(abi, "0x7e7366838AAe705eCD2f860Fae6976C3F78495ef", {data : ""});
       setContract(pokContract);
     }
   }, [web3]);

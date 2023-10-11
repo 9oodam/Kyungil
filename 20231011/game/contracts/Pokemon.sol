@@ -103,9 +103,3 @@ contract Pokemon is ERC20 {
         if(!isUser) users.push(User(who));
     }
 }
-
-
-// 1. 랜덤으로 포켓몬 뽑기 (버튼)
-// 2. 한 번 이상 구매한 계정들 보여주기 + 소유한 포켓몬 포함
-// 3. 포켓몬 소유권 넘기기 (함수)
-// 4. 
