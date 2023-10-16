@@ -1,0 +1,18 @@
+#container {
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex; flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+}
+input, .image-hash {
+  width: 1000px;
+  height: 25px;
+  margin: 0 0 15px 0;
+}
+button {
+  width: 100px;
+  margin: 0 0 30px 0;
+}
