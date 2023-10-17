@@ -269,6 +269,25 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "_tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "burn",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "tokenId",
 						"type": "uint256"
 					}
@@ -285,13 +304,31 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "getTokenId",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "getMyNft",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "tokenURI",
+								"type": "string"
+							}
+						],
+						"internalType": "struct MyNFT.MyNftArr[]",
 						"name": "",
-						"type": "uint256"
+						"type": "tuple[]"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -324,13 +361,8 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "_tokenId",
-						"type": "uint256"
-					},
-					{
 						"internalType": "string",
-						"name": "imageHash",
+						"name": "_hash",
 						"type": "string"
 					}
 				],
@@ -432,6 +464,29 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "operator",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "approved",
+						"type": "bool"
+					}
+				],
+				"name": "setAppAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "operator",
 						"type": "address"
 					},
@@ -480,7 +535,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "tokenNumber",
+				"name": "tokenIdNum",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -679,11 +734,11 @@
 	},
 	"sources": {
 		"myNFT.sol": {
-			"keccak256": "0x81d9f254add25cec6d8ab3fbaed8b7cad0fb765ebb5f598c247530e355196407",
+			"keccak256": "0xf9c96a3508b0df1e6b96e96d459ca977159b43461c8beb05994e2d8d4ac02a49",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://49779e97d37839456ff79da987e35cb66454920972f32d737587d391bce470b0",
-				"dweb:/ipfs/QmYdT7BcfyfWM2JyyA1BsTYaJx86wzR4ZCPHscfTfWdSfS"
+				"bzz-raw://1f50fe8cd2ec5348be1d963166daf18083e1d9d43b78c3301aed9fb7d884a245",
+				"dweb:/ipfs/QmNfVf8mNmR3Pxhi2Vcj21aVgcT41yMs54AyQzxZTgy11S"
 			]
 		},
 		"node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {

@@ -4,11 +4,7 @@ pragma solidity ^0.8.20;
 import "./node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract MyNFT is ERC721 {
-    constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {
-
-    }
-
-    uint256 public tokenNumber;
+    uint256 public tokenIdNum = 21;
 
     struct MyNftArr {
         uint256 tokenId;
@@ -18,23 +14,30 @@ contract MyNFT is ERC721 {
     mapping (uint256 tokenId => string tokenURI) _tokenURI;
     mapping (address => MyNftArr[]) public _myNftArr;
     mapping (uint256 tokenId => address) _tokenApprovals;
-
-    // 토큰 아이디 겹치지 않게 부여
-    function getTokenId() public returns (uint256) {
-        tokenNumber += 1;
-        return tokenNumber;
-    }
     
+    constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {
+
+    }
+
+
     // 민팅
-    function minting(uint256 _tokenId, string memory imageHash) public returns (bool) {
-        _tokenURI[_tokenId] = imageHash; // tokenId -> tokenURI 매핑
-        _tokenApprovals[_tokenId] = msg.sender; // tokenId -> address 매핑
+    function minting(string memory _hash) public returns (bool) {
+        _tokenURI[tokenIdNum] = _hash; // tokenId -> tokenURI 매핑
         _myNftArr[msg.sender].push(MyNftArr( // address -> tokenId, tokenURI 매핑
-            _tokenId,
-            imageHash
+            tokenIdNum,
+            _hash
         ));
-        
-        _mint(msg.sender, _tokenId);
+
+        _mint(msg.sender, tokenIdNum);
+        tokenIdNum += 1;
+        return true;
+    }
+
+    // 삭제
+    function burn(uint256 _tokenId) public returns (bool) {
+        _tokenURI[_tokenId] = '';
+
+        _burn(_tokenId);
         return true;
     }
 
@@ -45,4 +48,17 @@ contract MyNFT is ERC721 {
     function _baseURI() internal view override returns (string memory) {
         return "https://crimson-generous-ant-395.mypinata.cloud/ipfs/";
     }
+
+    function getMyNft(address owner) public returns (MyNftArr[] memory) {
+        return _myNftArr[msg.sender];
+    }
+
+
+
+    // NFT 판매 권한 부여
+    function setAppAll(address owner, address operator, bool approved) public {
+        _setApprovalForAll(owner, operator, approved);
+    }
+
+    // NFT 소유권 및 권한 설정은 여기서
 }
